@@ -428,6 +428,7 @@ public class PNBarChart: UIView {
     
     public func touchPoint(location: CGPoint) {
         var subview: UIView = hitTest(location, withEvent: nil)!
+        //Issue here with nil event
         
         if subview.tag != 0 {
             self.delegate?.userClickedOnBar(listOfExpenses[subview.tag - 1])

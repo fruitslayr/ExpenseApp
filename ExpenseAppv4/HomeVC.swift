@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeVC: UIViewController, PNChartDelegate {
 
@@ -19,10 +20,14 @@ class HomeVC: UIViewController, PNChartDelegate {
     
     var barChart = PNBarChart(frame: CGRectMake(0, 0, 640, 354))
     var coreDataStack: CoreDataStack!
-    var chartDataController: ChartDataController!
     
-    var expenseListForSegue: [[Expense]]!
+    var chartDataController: ChartDataController!
+    var graphDataToDisplay: (List: [[[Expense]]], labels: [String], tags: [Tag])!
 
+    var expenseListForSegue: [[Expense]]!
+    
+    //opening settings
+    var defaults = NSUserDefaults.standardUserDefaults()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +38,75 @@ class HomeVC: UIViewController, PNChartDelegate {
         barScrollView.addGestureRecognizer(pinch)
         self.automaticallyAdjustsScrollViewInsets = false
         
-        chartDataController = ChartDataController(coreDataStack: coreDataStack)
-        let data = chartDataController.daily()
-        updateDetailBar(data.dailyList[0])
-        
         let singleTap2 = UITapGestureRecognizer(target: self, action: "handleTap2:")
         detailScrollView.addGestureRecognizer(singleTap2)
         
     }
 
     override func viewWillAppear(animated: Bool) {
-        createBarGraph()
-        barScrollView.addSubview(barGraph)
         
-        let data = chartDataController.daily()
-        updateDetailBar(data.dailyList[0])
+        let instructions: Bool? = safetyCheckForExpense()
+        
+        if instructions == true {
+            chartDataController = ChartDataController(coreDataStack: coreDataStack)
+            
+            switch graphViewToLoad() {
+            case 0:
+                graphDataToDisplay = chartDataController.daily()
+            case 1:
+                graphDataToDisplay = chartDataController.weekly()
+            case 2:
+                graphDataToDisplay = chartDataController.monthly()
+            default:
+                graphDataToDisplay = chartDataController.daily()
+            }
+            
+            updateDetailBar(graphDataToDisplay.List[0])
+            
+            createBarGraph(graphDataToDisplay)
+            barScrollView.addSubview(barGraph)
+        } else if instructions == false {
+            let message = UILabel(frame: CGRectMake(10, 0, 300, 80))
+            message.text = "There are no           expenses to display."
+            message.textColor = appColor.defaultTintColor
+            message.font = UIFont.systemFontOfSize(30)
+            message.textAlignment = .Center
+            message.numberOfLines = 4
+            barGraph.addSubview(message)
+            
+            let detailMessage = UILabel(frame: CGRectMake(30, 80, 260, 50))
+            detailMessage.text = "Press the + button in the top right corner to add an expense."
+            detailMessage.textColor = appColor.defaultTintColor
+            detailMessage.font = UIFont.systemFontOfSize(15)
+            detailMessage.textAlignment = .Center
+            detailMessage.numberOfLines = 4
+            barGraph.addSubview(detailMessage)
+        } else {
+            let message = UILabel(frame: CGRectMake(10, 0, 300, 80))
+            message.text = "There seems to            be a problem."
+            message.textColor = appColor.defaultTintColor
+            message.font = UIFont.systemFontOfSize(30)
+            message.textAlignment = .Center
+            message.numberOfLines = 4
+            barGraph.addSubview(message)
+            
+            let detailMessage = UILabel(frame: CGRectMake(30, 80, 260, 40))
+            detailMessage.text = "Please contact us for further support."
+            detailMessage.textColor = appColor.defaultTintColor
+            detailMessage.font = UIFont.systemFontOfSize(15)
+            detailMessage.textAlignment = .Center
+            detailMessage.numberOfLines = 4
+            barGraph.addSubview(detailMessage)
+            
+            let button = UIButton(frame: CGRectMake(125, 130, 70, 30))
+            button.setTitle("Email us", forState: .Normal)
+            button.titleLabel?.font = UIFont.systemFontOfSize(15)
+            button.layer.cornerRadius = 5.0
+            button.layer.borderColor = appColor.headerTintColor.CGColor
+            button.layer.borderWidth = 1.0
+            button.setTitleColor(appColor.headerTintColor, forState: .Normal)
+            barGraph.addSubview(button)
+        }
 
     }
 
@@ -66,21 +125,11 @@ class HomeVC: UIViewController, PNChartDelegate {
             performSegueWithIdentifier("showExpenses", sender: detailScrollView)
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    @IBAction func close(segue:UIStoryboardSegue) {}
 
-    func createBarGraph() {
+    func createBarGraph(data: (List: [[[Expense]]], labels: [String], tags: [Tag])) {
         
         barChart.backgroundColor = UIColor.clearColor()
         barChart.labelMarginTop = 5.0
-        
-        //create chartdatacontroller
-        let data = chartDataController.daily()
         
         //Set up size of views and controllers
         barChart.frame = CGRectMake(0, 0, 46 * CGFloat(data.labels.count), 354)
@@ -92,7 +141,7 @@ class HomeVC: UIViewController, PNChartDelegate {
         //change size according to requirements
 
         barChart.xLabels = data.labels.reverse()
-        barChart.listOfExpenses = data.dailyList.reverse()
+        barChart.listOfExpenses = data.List.reverse()
         
         barChart.strokeColors = []
         
@@ -146,6 +195,30 @@ class HomeVC: UIViewController, PNChartDelegate {
         self.detailScrollView.contentSize = contentRect.size
     }
     
+    func graphViewToLoad() -> Int {
+        if let defaultViewIsNotNil = defaults.objectForKey("defaultView") as? Int {
+            return defaults.objectForKey("defaultView") as Int
+        } else {
+            return 0
+        }
+    }
+    
+    func safetyCheckForExpense() -> Bool? {
+        let fetchRequest = NSFetchRequest(entityName: "Expense")
+        var error: NSError? = nil
+        let results = coreDataStack.context.countForFetchRequest(fetchRequest, error: &error)
+        
+        if results == 0 {
+            return false
+        } else if error != nil {
+            println("Error is \(error)")
+            return nil
+        } else {
+            return true
+        }
+
+    }
+    
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "toNavControllerSettings" {
@@ -162,6 +235,13 @@ class HomeVC: UIViewController, PNChartDelegate {
             destinationController.condensedListOfExpenses = expenseListForSegue
         }
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func close(segue:UIStoryboardSegue) {}
 
     
 }

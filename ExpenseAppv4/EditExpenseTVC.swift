@@ -12,19 +12,20 @@ import CoreData
 
 class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate, SetLocationDelegate {
     
+    var expenseItem: Expense!
+    
     @IBOutlet weak var nameOfExpense: UITextField!
     @IBOutlet weak var tagSelected:UITextField!
-    var tempTagSelected = ""
-    var tagToSave: Tag?
+        var tempTagSelected = ""
+        var tagToSave: Tag?
     @IBOutlet weak var amountSelected:UITextField!
-    var tempAmountSelected = ""
+        var tempAmountSelected = ""
     @IBOutlet weak var dateAndTime:UITextField!
-    var tempDateAndTime = NSDate()
-    var selectedDateAndTime: NSDate = NSDate()
+    var tempDateAndTime: NSDate!
+        var selectedDateAndTime: NSDate!
     
-    //var location:
-    
-    
+    var setLocation: CLLocationCoordinate2D?
+
     //for datePicker
     let datePicker = UIDatePicker()
     func datePickerChanged(sender: UIDatePicker) {
@@ -38,14 +39,14 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     var coreDataStack: CoreDataStack!
     var listOfTags: [Tag]!
     
-    //manager for getting location
-    var manager: OneShotLocationManager?
-    var setLocation: CLLocationCoordinate2D?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        getUserLocation()
+
+        if let coordinate = expenseItem.coordinate {
+            setLocation = CLLocationCoordinate2D(latitude: coordinate.latitude.doubleValue, longitude: coordinate.longitude.doubleValue)
+        } else {
+            setLocation = CLLocationCoordinate2D(latitude: -33.8683, longitude: 151.2086)
+        }
         
         //get Tag list form coreDataStack
         let fetchRequest = NSFetchRequest(entityName: "Tag")
@@ -63,13 +64,17 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         self.dateAndTime.delegate = self
         
         //set symbol for dolar sign
-        amountSelected.text = getCurrencySymbol()
+        amountSelected.text = "\(getCurrencySymbol())\(expenseItem.amount)"
+        
+        //name of expense
+        nameOfExpense.text = expenseItem.name
         
         //tagSelect pickerview setup
         let picker = UIPickerView(frame: CGRectMake(0, self.view.bounds.size.height, 320, 100))
         picker.dataSource = self
         picker.delegate = self
         self.tagSelected.inputView = picker
+        picker.selectRow(self.expenseItem.tag.position.integerValue, inComponent: 0, animated: false)
         
         //custom tagSelect toolbar set up
         let tagToolbar = UIToolbar(frame: CGRectMake(0, self.view.bounds.size.height, 320, 44))
@@ -86,14 +91,15 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         self.tagSelected.inputAccessoryView = tagToolbar
         
         //custom label for tagSelected
-        tagSelected.text = listOfTags[0].text
-        tagToSave = listOfTags[0]
+        tagSelected.text = expenseItem.tag.text
+        tagToSave = expenseItem.tag
         
         // dateAndTime pickerview setup
         datePicker.frame = CGRectMake(0, self.view.bounds.size.height, 320, 100)
         datePicker.datePickerMode = UIDatePickerMode.DateAndTime
         //datePicker.minuteInterval = 10
-        datePicker.date = NSDate()
+        tempDateAndTime = expenseItem.dateAndTime
+        datePicker.setDate(expenseItem.dateAndTime, animated: false)
         datePicker.maximumDate = NSDate()
         
         self.dateAndTime.inputView = datePicker
@@ -103,6 +109,7 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         
         ///get current time for dateAndTime
         dateAndTime.text = printDateAndTime(datePicker.date)
+        selectedDateAndTime = tempDateAndTime
         
         //custom dateAndTime toolbar set up
         let dateAndTimeToolbar = UIToolbar(frame: CGRectMake(0, self.view.bounds.size.height, 320, 44))
@@ -388,45 +395,7 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
-        if identifier == "setLocation" && setLocation == nil {
-            let optionMenu = UIAlertController(title: "Error", message: "Unable to set location due to location preferences turned off. Go to settings to turn on location preferences.", preferredStyle: .Alert)
-            
-            // Add Settings action to the menu
-            let settingAction = UIAlertAction(title: "Settings", style: .Cancel, handler: {_ -> Void in
-                UIApplication.sharedApplication().openURL(NSURL(string:UIApplicationOpenSettingsURLString)!)
-                return
-            })
-            optionMenu.addAction(settingAction)
-            
-            // Add Cancel action to the menu
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-            optionMenu.addAction(cancelAction)
-            
-            self.presentViewController(optionMenu, animated: true, completion: nil)
-            
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    func getUserLocation() {
-        //get users current location
-        manager = OneShotLocationManager()
-        manager!.fetchWithCompletion {location, error in
-            if let loc = location {
-                self.setLocation = loc.coordinate
-            } else if let err = error {
-                println(err.localizedDescription)
-                self.setLocation = nil
-            }
-            self.manager = nil
-        }
-    }
-    
-    /*@IBAction func saveExpense() {
-        
+    override func viewWillDisappear(animated: Bool) {
         if countElements(amountSelected.text) < 2 {
             //if the amountSelected has been filled: --> Create an option menu as an action sheet
             let optionMenu = UIAlertController(title: "Oops!", message: "You need to input an amount before you can save this expense.", preferredStyle: .Alert)
@@ -437,39 +406,35 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
             self.presentViewController(optionMenu, animated: true, completion: nil )
             
         } else {
-            //save new expense
-            let newExpense = NSEntityDescription.insertNewObjectForEntityForName("Expense", inManagedObjectContext: self.coreDataStack.context) as Expense
-            
+            //save editted expense
             //essential things that must be saved
-            newExpense.amount = NSNumber(double: (amountSelected.text.substringFromIndex(amountSelected.text.startIndex.successor()) as NSString).doubleValue) //Seems risky liable to problems in the future
-            newExpense.tag = tagToSave
+            expenseItem.amount = NSNumber(double: (amountSelected.text.substringFromIndex(amountSelected.text.startIndex.successor()) as NSString).doubleValue) //Seems risky liable to problems in the future
+            expenseItem.tag = tagToSave
             
             
             //extra things that can be saved
             if nameOfExpense.text != "" {
-                newExpense.name = nameOfExpense.text
+                expenseItem.name = nameOfExpense.text
             } else {
-                newExpense.name = nil
+                expenseItem.name = nil
             }
             
             if setLocation != nil {
                 let newCoordinate = NSEntityDescription.insertNewObjectForEntityForName("Coordinate", inManagedObjectContext: self.coreDataStack.context) as Coordinate
                 newCoordinate.latitude = setLocation!.latitude
                 newCoordinate.longitude = setLocation!.longitude
-                newExpense.coordinate = newCoordinate
+                expenseItem.coordinate = newCoordinate
             } else {
-                newExpense.coordinate = nil
+                expenseItem.coordinate = nil
             }
             
-            newExpense.dateAndTime = selectedDateAndTime
+            expenseItem.dateAndTime = selectedDateAndTime
             
             self.coreDataStack.saveContext()
             
-            //performs unwind segue
-            self.dismissViewControllerAnimated(true, completion: nil)
-            
         }
-    }*/
+
+    }
     
     
     
