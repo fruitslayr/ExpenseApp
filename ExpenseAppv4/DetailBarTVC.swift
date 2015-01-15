@@ -24,7 +24,7 @@ class DetailBarTVC: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        println("runs")
+        self.navigationItem.title = "Expense Items"
         
         for array in condensedListOfExpenses {
             for item in array {
@@ -35,6 +35,8 @@ class DetailBarTVC: UITableViewController {
         //cell row height
         self.tableView.rowHeight = 60
         
+        
+        //create date sort on expense array
         /*
         let expenseSort = NSSortDescriptor(key: "dateAndTime", ascending: false)
         uncondensedListOfExpenses.sort(<#isOrderedBefore: (T, T) -> Bool##(T, T) -> Bool#>)

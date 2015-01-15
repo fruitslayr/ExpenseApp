@@ -23,10 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         
-        if let barFont = UIFont(name: "AmericanTypewriter", size: 22) {
+        if let barFont = UIFont(name: "HelveticaNeue-Medium", size: 20) {
             
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName:barFont]
         }
+        
+        //set image for title bar
+        let titleBarImage = UIImage(named: "titleBar.png")
+        UINavigationBar.appearance().setBackgroundImage(titleBarImage, forBarMetrics: .Default)
         
         // Change status bar style
         UIApplication.sharedApplication().statusBarStyle = .LightContent

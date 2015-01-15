@@ -15,7 +15,6 @@ class HomeVC: UIViewController, PNChartDelegate {
     @IBOutlet weak var barScrollView: UIScrollView!
     
     @IBOutlet weak var detailScrollView: UIScrollView!
-    @IBOutlet weak var detailBar: UIView!
     @IBOutlet weak var detailHeading: UIView!
     
     var barChart = PNBarChart(frame: CGRectMake(0, 0, 640, 354))
@@ -32,22 +31,45 @@ class HomeVC: UIViewController, PNChartDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let singleTap = UITapGestureRecognizer(target: self, action: "handleTap:")
-        let pinch = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
-        barScrollView.addGestureRecognizer(singleTap)
-        barScrollView.addGestureRecognizer(pinch)
         self.automaticallyAdjustsScrollViewInsets = false
-        
-        let singleTap2 = UITapGestureRecognizer(target: self, action: "handleTap2:")
-        detailScrollView.addGestureRecognizer(singleTap2)
-        
+
+        self.navigationItem.title = "ExpenseTrackr"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AmericanTypewriter", size: 24)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+
     }
 
     override func viewWillAppear(animated: Bool) {
         
+        if let views = barGraph?.subviews {
+            for view in views {
+                view.removeFromSuperview()
+            }
+        }
+        
+        if let views = detailScrollView?.subviews {
+            for view in views {
+                view.removeFromSuperview()
+            }
+        }
+        
+        if let views = detailHeading?.subviews {
+            for view in views {
+                view.removeFromSuperview()
+            }
+        }
+        
         let instructions: Bool? = safetyCheckForExpense()
         
         if instructions == true {
+            
+            let singleTap = UITapGestureRecognizer(target: self, action: "handleTap:")
+            let pinch = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
+            barScrollView.addGestureRecognizer(singleTap)
+            barScrollView.addGestureRecognizer(pinch)
+            
+            let singleTapForDetailBar = UITapGestureRecognizer(target: self, action: "handleTapForDetailBar:")
+            detailScrollView.addGestureRecognizer(singleTapForDetailBar)
+            
             chartDataController = ChartDataController(coreDataStack: coreDataStack)
             
             switch graphViewToLoad() {
@@ -119,7 +141,7 @@ class HomeVC: UIViewController, PNChartDelegate {
         barChart.touchPoint(touchPoint)
     }
     
-    func handleTap2(gestureRecognizer:UITapGestureRecognizer) {
+    func handleTapForDetailBar(gestureRecognizer:UITapGestureRecognizer) {
         let touchPoint = gestureRecognizer.locationInView(detailScrollView)
         if touchPoint.x > detailScrollView.contentSize.width - 95 {
             performSegueWithIdentifier("showExpenses", sender: detailScrollView)

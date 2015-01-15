@@ -68,7 +68,7 @@ class ChartDataController {
                 while expenseItems[i].dateAndTime.compare(dayTracker) == NSComparisonResult.OrderedAscending {
 
                     //append string to stringDatesToReturn
-                    if stringDatesToReturn.count < 8 {
+                    if stringDatesToReturn.count < 7 {
                         dateSwitch = calendar.components(.DayCalendarUnit | .WeekdayCalendarUnit, fromDate: dayTracker)
                         stringDatesToReturn.append(dateFormatter.shortWeekdaySymbols[(dateSwitch.weekday - 1)%7] as NSString)
                     } else {
@@ -91,7 +91,7 @@ class ChartDataController {
                 expenseItemsToReturn.append(currentDayListOfExpenseItems)
                 
                 //append string to stringDatesToReturn
-                if stringDatesToReturn.count < 8 {
+                if stringDatesToReturn.count < 7 {
                     dateSwitch = calendar.components(.DayCalendarUnit | .WeekdayCalendarUnit, fromDate: dayTracker)
                     stringDatesToReturn.append(dateFormatter.shortWeekdaySymbols[(dateSwitch.weekday - 1)%7] as NSString)
                 } else {
@@ -221,34 +221,6 @@ class ChartDataController {
             newExpenseItemsToReturn.append(organizeByTag(expenseItemsToReturn[i]))
         }
         
-        /*
-        println(dayTracker)
-        println(stringDatesToReturn)
-        println(expenseItemsToReturn)
-        println(currentDayListOfExpenseItems.count)
-        println("\n")
-        
-        
-        for i in 0..<expenseItemsToReturn.count {
-        let tempArray = expenseItemsToReturn[i] as [Expense]
-        println("i = \(i)")
-        for j in 0..<expenseItemsToReturn[i].count {
-        println("j = \(j) with item \(tempArray[j].amount)")
-        }
-        println()
-        
-        }*/
-        
-        /*
-        for i in 0..<newExpenseItemsToReturn.count {
-        for j in 0..<newExpenseItemsToReturn[i].count {
-        let tempArray = newExpenseItemsToReturn[i][j] as [Expense]
-        for k in 0..<newExpenseItemsToReturn[i][j].count {
-        println ("i = \(i) with j = \(j) with item \(tempArray[k].amount)")
-        }
-        }
-        }*/
-        
         return (newExpenseItemsToReturn, stringDatesToReturn, getListOfTags())
     }
 
@@ -320,7 +292,7 @@ class ChartDataController {
                 //append string to stringDatesToReturn
 
                 var tempStringToReturn = (dateFormatter.stringFromDate(weeklyTracker) as NSString)
-                stringDatesToReturn.append(tempStringToReturn.substringWithRange(NSRange(location: 0, length: tempStringToReturn.length - 5))) //THIS NEEDS FIXING
+                stringDatesToReturn.append(tempStringToReturn.substringWithRange(NSRange(location: 0, length: tempStringToReturn.length - 5)))
 
                 weeklyTracker = calendar.dateByAddingComponents(components, toDate: weeklyTracker, options: nil)!
                 
@@ -335,35 +307,7 @@ class ChartDataController {
         for i in 0..<expenseItemsToReturn.count {
             newExpenseItemsToReturn.append(organizeByTag(expenseItemsToReturn[i]))
         }
-        
-        /*
-        println(dayTracker)
-        println(stringDatesToReturn)
-        println(expenseItemsToReturn)
-        println(currentDayListOfExpenseItems.count)
-        println("\n")
-        
-        
-        for i in 0..<expenseItemsToReturn.count {
-        let tempArray = expenseItemsToReturn[i] as [Expense]
-        println("i = \(i)")
-        for j in 0..<expenseItemsToReturn[i].count {
-        println("j = \(j) with item \(tempArray[j].amount)")
-        }
-        println()
-        
-        }*/
-        
-        /*
-        for i in 0..<newExpenseItemsToReturn.count {
-        for j in 0..<newExpenseItemsToReturn[i].count {
-        let tempArray = newExpenseItemsToReturn[i][j] as [Expense]
-        for k in 0..<newExpenseItemsToReturn[i][j].count {
-        println ("i = \(i) with j = \(j) with item \(tempArray[k].amount)")
-        }
-        }
-        }*/
-        
+       
         return (newExpenseItemsToReturn, stringDatesToReturn, getListOfTags())
     }
 
@@ -371,12 +315,16 @@ class ChartDataController {
     
     func organizeByTag(expensesToOrganize: [Expense]) -> [[Expense]] {
         var arrayToReturn = [[Expense]]()
+        var listOfTags = getListOfTags()
         
-        for i in 0..<getListOfTags().count {
+        for i in 0..<listOfTags.count {
             arrayToReturn.append([Expense]())
         }
         
         for item in expensesToOrganize {
+            if item.tag == nil {
+                item.tag = listOfTags[0]
+            }
             arrayToReturn[item.tag.position.integerValue].append(item)
         }
         

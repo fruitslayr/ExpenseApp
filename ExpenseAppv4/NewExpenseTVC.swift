@@ -218,9 +218,14 @@ class NewExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDat
         
         var myText: UILabel = UILabel(frame: CGRectMake(115, 0, 150, 40))
         myText.font = UIFont.systemFontOfSize(20)
-        myText.adjustsFontSizeToFitWidth = true
-        myText.minimumScaleFactor = 0.8
         myText.text = listOfTags[row].text
+        myText.sizeToFit()
+
+        let heightCorrection = (40 - myText.frame.height)/2
+        let widthCorrection = (320 - (40 + myText.frame.width) )/2
+        myIcon.frame = CGRectMake(widthCorrection, 5, 30, 30)
+        myText.frame = CGRectMake(widthCorrection + 40, heightCorrection, myText.frame.width, myText.frame.height)
+        
         
         var tempView: UIView = UIView(frame: CGRectMake(0, 0, 320, 40))
         tempView.addSubview(myIcon)
