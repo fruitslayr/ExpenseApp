@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import CoreData
 
 class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeViewControllerDelegate {
 
@@ -43,7 +44,7 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
     var defaults = NSUserDefaults.standardUserDefaults()
     
     //Function to send support email
-    @IBAction func sendEmailButton() {
+    @IBAction func sendSupportEmailButton() {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self
         
@@ -54,8 +55,44 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         
         let deviceInfo = UIDevice()
         var emailBody = "\n\n\n\n\n"
-        emailBody += "* Device Version: \(deviceInfo.systemName) \(deviceInfo.systemVersion)\n"
-        emailBody += "* Device Model: \(platformString())\n"
+        emailBody += "Device Version: \(deviceInfo.systemName) \(deviceInfo.systemVersion)\n"
+        emailBody += "Device Model: \(platformString())\n"
+        
+        mailComposerVC.setMessageBody(emailBody, isHTML: false)
+        
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+        } else {
+            
+            let errorAlert = UIAlertView(title: "Could not send an email", message: "Unable to send an email.  Please check device email settings and try again.", delegate: self, cancelButtonTitle: "Ok")
+            errorAlert.show()
+        }
+
+    }
+    
+    //Function to export expense items via email
+    @IBAction func exportExpensesEmailButton() {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.navigationBar.tintColor = UIColor.whiteColor()
+        
+        mailComposerVC.setToRecipients(["fruitslayr@icloud.com"])
+        mailComposerVC.setSubject("Export Expenses")
+        
+        var emailBody = "\n\n\n\n\n*****Expense items*****\n"
+        for expenseItem in getExpenses() {
+            emailBody += "Date: \(printDateAndTime(expenseItem.dateAndTime))\n"
+            
+            if (expenseItem.name != nil) {
+                emailBody += "Name: \(expenseItem.name!)\n"
+            } else {
+                emailBody += "Name: \n"
+            }
+            
+            emailBody += "Amount: \(getCurrencySymbol())\(expenseItem.amount)\n"
+            emailBody += "Tag: \(expenseItem.tag.text)\n\n"
+        }
         
         mailComposerVC.setMessageBody(emailBody, isHTML: false)
         
@@ -67,8 +104,9 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
             errorAlert.show()
         }
         
-        // Issues with styling the email form
     }
+
+    
     
     //mail compose controller that responds when email composition is finished
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
@@ -314,6 +352,30 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         if (  pf   == "i386"  )         { return  "Simulator"}
         if (  pf   == "x86_64"  )       { return  "Simulator"}
         return  pf
+    }
+    
+    func getExpenses() -> [Expense] {
+        //get Tag list form coreDataStack
+        let fetchRequest = NSFetchRequest(entityName: "Expense")
+        var error: NSError? = nil
+        
+        let expenseSort = NSSortDescriptor(key: "dateAndTime", ascending: false)
+        fetchRequest.sortDescriptors = [expenseSort]
+        
+        var results = coreDataStack.context.executeFetchRequest(fetchRequest, error: &error) as [Expense]
+        
+        return results
+    }
+    
+    //printing date and time
+    func printDateAndTime(date:NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        var theDateFormat = NSDateFormatterStyle.MediumStyle
+        let theTimeFormat = NSDateFormatterStyle.ShortStyle
+        dateFormatter.dateStyle = theDateFormat
+        dateFormatter.timeStyle = theTimeFormat
+        
+        return dateFormatter.stringFromDate(date)
     }
 
 }

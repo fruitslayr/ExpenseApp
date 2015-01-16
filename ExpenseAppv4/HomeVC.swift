@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import MessageUI
 import CoreData
 
-class HomeVC: UIViewController, PNChartDelegate {
+class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var barGraph: UIView!
     @IBOutlet weak var barScrollView: UIScrollView!
@@ -63,8 +64,9 @@ class HomeVC: UIViewController, PNChartDelegate {
         if instructions == true {
             
             let singleTap = UITapGestureRecognizer(target: self, action: "handleTap:")
-            let pinch = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
             barScrollView.addGestureRecognizer(singleTap)
+
+            let pinch = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
             barScrollView.addGestureRecognizer(pinch)
             
             let singleTapForDetailBar = UITapGestureRecognizer(target: self, action: "handleTapForDetailBar:")
@@ -127,6 +129,7 @@ class HomeVC: UIViewController, PNChartDelegate {
             button.layer.borderColor = appColor.headerTintColor.CGColor
             button.layer.borderWidth = 1.0
             button.setTitleColor(appColor.headerTintColor, forState: .Normal)
+            button.addTarget(self, action: "errorEmail:", forControlEvents: .TouchUpInside)
             barGraph.addSubview(button)
         }
 
@@ -177,6 +180,7 @@ class HomeVC: UIViewController, PNChartDelegate {
         barGraph.addSubview(barChart)
     }
     
+    //PNBarChart delegate methods
     func userClickedOnLineKeyPoint(point: CGPoint, lineIndex: Int, keyPointIndex: Int){}
     
     func userClickedOnLinePoint(point: CGPoint, lineIndex: Int){}
@@ -265,5 +269,93 @@ class HomeVC: UIViewController, PNChartDelegate {
     
     @IBAction func close(segue:UIStoryboardSegue) {}
 
+    @IBAction func errorEmail() {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.navigationBar.tintColor = UIColor.whiteColor()
+        
+        mailComposerVC.setToRecipients(["fruitslayr@icloud.com"])
+        mailComposerVC.setSubject("Error Report")
+        
+        let deviceInfo = UIDevice()
+        var emailBody = "\n\n\n\n\n"
+        emailBody += "Device Version: \(deviceInfo.systemName) \(deviceInfo.systemVersion)\n"
+        emailBody += "Device Model: \(platformString())\n"
+        
+        mailComposerVC.setMessageBody(emailBody, isHTML: false)
+        
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposerVC, animated: true, completion: nil)
+        } else {
+            
+            let errorAlert = UIAlertView(title: "Could not send an email", message: "Unable to send an email.  Please check device email settings and try again.", delegate: self, cancelButtonTitle: "Ok")
+            errorAlert.show()
+        }
+    }
+    
+    func platform() -> String {
+        var size : UInt = 0
+        sysctlbyname("hw.machine", nil, &size, nil, 0)
+        var machine = [CChar](count: Int(size), repeatedValue: 0)
+        sysctlbyname("hw.machine", &machine, &size, nil, 0)
+        return String.fromCString(machine)!
+    }
+    
+    /********************************************/
+    
+    func platformString() -> String {
+        
+        var pf = platform();
+        if (pf == "iPhone1,1")   { return  "iPhone 1G"}
+        if ( pf   == "iPhone1,2"  )    {return  "iPhone 3G"}
+        if (  pf   == "iPhone2,1"  )    { return  "iPhone 3GS"}
+        if (  pf   == "iPhone3,1"  )    { return  "iPhone 4"}
+        if (  pf   == "iPhone3,3"  )    { return  "Verizon iPhone 4"}
+        if (  pf   == "iPhone4,1"  )    { return  "iPhone 4S"}
+        if (  pf   == "iPhone5,1"  )    { return  "iPhone 5 (GSM)"}
+        if (  pf   == "iPhone5,2"  )    { return  "iPhone 5 (GSM+CDMA)"}
+        if (  pf   == "iPhone5,3"  )    { return  "iPhone 5c (GSM)"}
+        if (  pf   == "iPhone5,4"  )    { return  "iPhone 5c (GSM+CDMA)"}
+        if (  pf   == "iPhone6,1"  )    { return  "iPhone 5s (GSM)"}
+        if (  pf   == "iPhone6,2"  )    { return  "iPhone 5s (GSM+CDMA)"}
+        if (  pf   == "iPhone7,1"  )    { return  "iPhone 6 Plus"}
+        if (  pf   == "iPhone7,2"  )    { return  "iPhone 6"}
+        if (  pf   == "iPod1,1"  )      { return  "iPod Touch 1G"}
+        if (  pf   == "iPod2,1"  )      { return  "iPod Touch 2G"}
+        if (  pf   == "iPod3,1"  )      { return  "iPod Touch 3G"}
+        if (  pf   == "iPod4,1"  )      { return  "iPod Touch 4G"}
+        if (  pf   == "iPod5,1"  )      { return  "iPod Touch 5G"}
+        if (  pf   == "iPad1,1"  )      { return  "iPad"}
+        if (  pf   == "iPad2,1"  )      { return  "iPad 2 (WiFi)"}
+        if (  pf   == "iPad2,2"  )      { return  "iPad 2 (GSM)"}
+        if (  pf   == "iPad2,3"  )      { return  "iPad 2 (CDMA)"}
+        if (  pf   == "iPad2,4"  )      { return  "iPad 2 (WiFi)"}
+        if (  pf   == "iPad2,5"  )      { return  "iPad Mini (WiFi)"}
+        if (  pf   == "iPad2,6"  )      { return  "iPad Mini (GSM)"}
+        if (  pf   == "iPad2,7"  )      { return  "iPad Mini (GSM+CDMA)"}
+        if (  pf   == "iPad3,1"  )      { return  "iPad 3 (WiFi)"}
+        if (  pf   == "iPad3,2"  )      { return  "iPad 3 (GSM+CDMA)"}
+        if (  pf   == "iPad3,3"  )      { return  "iPad 3 (GSM)"}
+        if (  pf   == "iPad3,4"  )      { return  "iPad 4 (WiFi)"}
+        if (  pf   == "iPad3,5"  )      { return  "iPad 4 (GSM)"}
+        if (  pf   == "iPad3,6"  )      { return  "iPad 4 (GSM+CDMA)"}
+        if (  pf   == "iPad4,1"  )      { return  "iPad Air (WiFi)"}
+        if (  pf   == "iPad4,2"  )      { return  "iPad Air (Cellular)"}
+        if (  pf   == "iPad4,4"  )      { return  "iPad mini 2G (WiFi)"}
+        if (  pf   == "iPad4,5"  )      { return  "iPad mini 2G (Cellular)"}
+        
+        if (  pf   == "iPad4,7"  )      { return  "iPad mini 3 (WiFi)"}
+        if (  pf   == "iPad4,8"  )      { return  "iPad mini 3 (Cellular)"}
+        if (  pf   == "iPad4,9"  )      { return  "iPad mini 3 (China Model)"}
+        
+        if (  pf   == "iPad5,3"  )      { return  "iPad Air 2 (WiFi)"}
+        if (  pf   == "iPad5,4"  )      { return  "iPad Air 2 (Cellular)"}
+        
+        if (  pf   == "i386"  )         { return  "Simulator"}
+        if (  pf   == "x86_64"  )       { return  "Simulator"}
+        return  pf
+    }
+    
     
 }
