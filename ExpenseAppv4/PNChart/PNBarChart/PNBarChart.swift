@@ -13,6 +13,8 @@ public class PNBarChart: UIView {
     
     // MARK: Variables
     
+    var chartData: (List: [[[Expense]]], labels: [String], tags: [Tag]) = ([[[Expense]]](), [String](), [Tag]())
+    
     public  var xLabels: NSArray = [] {
         
         didSet{
@@ -444,8 +446,7 @@ public class PNBarChart: UIView {
     {
         super.init(frame: frame)
         barBackgroundColor = PNLightGreyColor
-        clipsToBounds = true
-        
+        clipsToBounds = true        
     }
     
     required public init(coder aDecoder: NSCoder) {
