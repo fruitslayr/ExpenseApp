@@ -13,7 +13,6 @@
 		6E26707D1A57A30600771239 /* OneShotLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E26707C1A57A30600771239 /* OneShotLocationManager.swift */; };
 		6E2B32441A629A260024EC09 /* EditExpenseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2B32431A629A260024EC09 /* EditExpenseTVC.swift */; };
 		6E3EB1571A6281E00074186E /* DetailBarTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EB1561A6281E00074186E /* DetailBarTVC.swift */; };
-		6E3EB1591A6284440074186E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E3EB1581A6284440074186E /* Main.storyboard */; };
 		6E4034EB1A5135E700354D8C /* NonCopyPasteTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4034EA1A5135E700354D8C /* NonCopyPasteTF.swift */; };
 		6E437A791A5BAD8200B1D01D /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E437A781A5BAD8100B1D01D /* Coordinate.swift */; };
 		6E437A7B1A5BAD8200B1D01D /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E437A7A1A5BAD8200B1D01D /* Tag.swift */; };
@@ -27,6 +26,7 @@
 		6EC137831A5B42240046AEFD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC137821A5B42240046AEFD /* CoreDataStack.swift */; };
 		6EC137861A5B433E0046AEFD /* ExpenseApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EC137841A5B433E0046AEFD /* ExpenseApp.xcdatamodeld */; };
 		6ED05D9E1A6B324400C34D5C /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */; };
+		6ED05DA01A6B33BF00C34D5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */; };
 		6EDA82391A511F610020D53C /* ExpenseAppv4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82381A511F610020D53C /* ExpenseAppv4Tests.swift */; };
 		6EDA824C1A511FBD0020D53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82431A511FBD0020D53C /* AppDelegate.swift */; };
 		6EDA824D1A511FBD0020D53C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82441A511FBD0020D53C /* HomeVC.swift */; };
@@ -76,7 +76,6 @@
 		6E26707C1A57A30600771239 /* OneShotLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneShotLocationManager.swift; sourceTree = "<group>"; };
 		6E2B32431A629A260024EC09 /* EditExpenseTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpenseTVC.swift; sourceTree = "<group>"; };
 		6E3EB1561A6281E00074186E /* DetailBarTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailBarTVC.swift; sourceTree = "<group>"; };
-		6E3EB1581A6284440074186E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
 		6E4034EA1A5135E700354D8C /* NonCopyPasteTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonCopyPasteTF.swift; sourceTree = "<group>"; };
 		6E40354C1A5195B800354D8C /* ExpenseAppv4-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ExpenseAppv4-Bridging-Header.h"; sourceTree = "<group>"; };
 		6E437A781A5BAD8100B1D01D /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
@@ -93,6 +92,7 @@
 		6EC137821A5B42240046AEFD /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		6EC137851A5B433E0046AEFD /* ExpenseApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseApp.xcdatamodel; sourceTree = "<group>"; };
 		6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
+		6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		6EDA821D1A511F610020D53C /* ExpenseAppv4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseAppv4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EDA82211A511F610020D53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EDA82321A511F610020D53C /* ExpenseAppv4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseAppv4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -234,7 +234,7 @@
 				6EC137821A5B42240046AEFD /* CoreDataStack.swift */,
 				6E1489FB1A527F520009AD47 /* Controllers */,
 				6EDA82461A511FBD0020D53C /* Images.xcassets */,
-				6E3EB1581A6284440074186E /* Main.storyboard */,
+				6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */,
 				6EDA82471A511FBD0020D53C /* LaunchScreen.xib */,
 				6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */,
 				6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */,
@@ -338,9 +338,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6EDA821C1A511F610020D53C /* ExpenseAppv4 */ = {
+		6EDA821C1A511F610020D53C /* ExpenseTrackr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6EDA823C1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseAppv4" */;
+			buildConfigurationList = 6EDA823C1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseTrackr" */;
 			buildPhases = (
 				6EDA82191A511F610020D53C /* Sources */,
 				6EDA821A1A511F610020D53C /* Frameworks */,
@@ -350,14 +350,14 @@
 			);
 			dependencies = (
 			);
-			name = ExpenseAppv4;
+			name = ExpenseTrackr;
 			productName = ExpenseAppv4;
 			productReference = 6EDA821D1A511F610020D53C /* ExpenseAppv4.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6EDA82311A511F610020D53C /* ExpenseAppv4Tests */ = {
+		6EDA82311A511F610020D53C /* ExpenseTrackrTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6EDA823F1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseAppv4Tests" */;
+			buildConfigurationList = 6EDA823F1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseTrackrTests" */;
 			buildPhases = (
 				6EDA822E1A511F610020D53C /* Sources */,
 				6EDA822F1A511F610020D53C /* Frameworks */,
@@ -368,7 +368,7 @@
 			dependencies = (
 				6EDA82341A511F610020D53C /* PBXTargetDependency */,
 			);
-			name = ExpenseAppv4Tests;
+			name = ExpenseTrackrTests;
 			productName = ExpenseAppv4Tests;
 			productReference = 6EDA82321A511F610020D53C /* ExpenseAppv4Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -409,8 +409,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6EDA821C1A511F610020D53C /* ExpenseAppv4 */,
-				6EDA82311A511F610020D53C /* ExpenseAppv4Tests */,
+				6EDA821C1A511F610020D53C /* ExpenseTrackr */,
+				6EDA82311A511F610020D53C /* ExpenseTrackrTests */,
 			);
 		};
 /* End PBXProject section */
@@ -420,9 +420,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E3EB1591A6284440074186E /* Main.storyboard in Resources */,
 				6EDA82501A511FBD0020D53C /* LaunchScreen.xib in Resources */,
 				6EDA824F1A511FBD0020D53C /* Images.xcassets in Resources */,
+				6ED05DA01A6B33BF00C34D5C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +497,7 @@
 /* Begin PBXTargetDependency section */
 		6EDA82341A511F610020D53C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6EDA821C1A511F610020D53C /* ExpenseAppv4 */;
+			target = 6EDA821C1A511F610020D53C /* ExpenseTrackr */;
 			targetProxy = 6EDA82331A511F610020D53C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -653,7 +653,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6EDA823C1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseAppv4" */ = {
+		6EDA823C1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseTrackr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6EDA823D1A511F610020D53C /* Debug */,
@@ -662,7 +662,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6EDA823F1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseAppv4Tests" */ = {
+		6EDA823F1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseTrackrTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6EDA82401A511F610020D53C /* Debug */,
