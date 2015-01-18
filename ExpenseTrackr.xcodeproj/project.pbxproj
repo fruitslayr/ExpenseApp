@@ -12,7 +12,6 @@
 		6E263CF61A5C9438006D541A /* ChartDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E263CF51A5C9438006D541A /* ChartDataController.swift */; };
 		6E26707D1A57A30600771239 /* OneShotLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E26707C1A57A30600771239 /* OneShotLocationManager.swift */; };
 		6E2B32441A629A260024EC09 /* EditExpenseTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2B32431A629A260024EC09 /* EditExpenseTVC.swift */; };
-		6E3EB1551A627E180074186E /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EB1541A627E180074186E /* customTableViewCell.swift */; };
 		6E3EB1571A6281E00074186E /* DetailBarTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E3EB1561A6281E00074186E /* DetailBarTVC.swift */; };
 		6E3EB1591A6284440074186E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6E3EB1581A6284440074186E /* Main.storyboard */; };
 		6E4034EB1A5135E700354D8C /* NonCopyPasteTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4034EA1A5135E700354D8C /* NonCopyPasteTF.swift */; };
@@ -27,6 +26,7 @@
 		6EB308781A56B5FC0002DFA0 /* SetLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308771A56B5FC0002DFA0 /* SetLocationVC.swift */; };
 		6EC137831A5B42240046AEFD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC137821A5B42240046AEFD /* CoreDataStack.swift */; };
 		6EC137861A5B433E0046AEFD /* ExpenseApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EC137841A5B433E0046AEFD /* ExpenseApp.xcdatamodeld */; };
+		6ED05D9E1A6B324400C34D5C /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */; };
 		6EDA82391A511F610020D53C /* ExpenseAppv4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82381A511F610020D53C /* ExpenseAppv4Tests.swift */; };
 		6EDA824C1A511FBD0020D53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82431A511FBD0020D53C /* AppDelegate.swift */; };
 		6EDA824D1A511FBD0020D53C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82441A511FBD0020D53C /* HomeVC.swift */; };
@@ -75,7 +75,6 @@
 		6E263CF51A5C9438006D541A /* ChartDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataController.swift; sourceTree = "<group>"; };
 		6E26707C1A57A30600771239 /* OneShotLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneShotLocationManager.swift; sourceTree = "<group>"; };
 		6E2B32431A629A260024EC09 /* EditExpenseTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditExpenseTVC.swift; sourceTree = "<group>"; };
-		6E3EB1541A627E180074186E /* customTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = customTableViewCell.swift; path = ../../../../../.Trash/customTableViewCell.swift; sourceTree = "<group>"; };
 		6E3EB1561A6281E00074186E /* DetailBarTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailBarTVC.swift; sourceTree = "<group>"; };
 		6E3EB1581A6284440074186E /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = ../../../../../.Trash/Main.storyboard; sourceTree = "<group>"; };
 		6E4034EA1A5135E700354D8C /* NonCopyPasteTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonCopyPasteTF.swift; sourceTree = "<group>"; };
@@ -93,6 +92,7 @@
 		6EB308771A56B5FC0002DFA0 /* SetLocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetLocationVC.swift; sourceTree = "<group>"; };
 		6EC137821A5B42240046AEFD /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		6EC137851A5B433E0046AEFD /* ExpenseApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseApp.xcdatamodel; sourceTree = "<group>"; };
+		6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
 		6EDA821D1A511F610020D53C /* ExpenseAppv4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseAppv4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EDA82211A511F610020D53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EDA82321A511F610020D53C /* ExpenseAppv4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseAppv4Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,7 +236,7 @@
 				6EDA82461A511FBD0020D53C /* Images.xcassets */,
 				6E3EB1581A6284440074186E /* Main.storyboard */,
 				6EDA82471A511FBD0020D53C /* LaunchScreen.xib */,
-				6E3EB1541A627E180074186E /* customTableViewCell.swift */,
+				6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */,
 				6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */,
 				6E263CF51A5C9438006D541A /* ChartDataController.swift */,
 				6E7F94AB1A6230880091B581 /* DetailBarController.swift */,
@@ -443,6 +443,7 @@
 				6E7F94AC1A6230880091B581 /* DetailBarController.swift in Sources */,
 				6EFBD7651A52E3F7007E9977 /* HRBrightnessCursor.m in Sources */,
 				6EDA82651A511FF00020D53C /* PNLineChart.swift in Sources */,
+				6ED05D9E1A6B324400C34D5C /* customTableViewCell.swift in Sources */,
 				6EFBD76A1A52E3F7007E9977 /* HRColorPickerView.m in Sources */,
 				6E6863AE1A52266800317A19 /* PickerTF.swift in Sources */,
 				6EDA82611A511FF00020D53C /* PNBarChart.swift in Sources */,
@@ -462,7 +463,6 @@
 				6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */,
 				6EDA82641A511FF00020D53C /* PNChartLabel.swift in Sources */,
 				6E437A7B1A5BAD8200B1D01D /* Tag.swift in Sources */,
-				6E3EB1551A627E180074186E /* customTableViewCell.swift in Sources */,
 				6EDA82541A511FBD0020D53C /* appColor.swift in Sources */,
 				6EDA824C1A511FBD0020D53C /* AppDelegate.swift in Sources */,
 				6E3EB1571A6281E00074186E /* DetailBarTVC.swift in Sources */,

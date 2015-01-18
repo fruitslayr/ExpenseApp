@@ -104,6 +104,8 @@ class DetailBarTVC: UITableViewController {
         
         if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
             let symbol = defaults.objectForKey("currencySymbol") as Int
+            //integerForKey
+            
             switch symbol {
             case 0:
                 output += "$"
