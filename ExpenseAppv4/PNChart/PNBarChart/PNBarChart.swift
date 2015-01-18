@@ -14,6 +14,7 @@ public class PNBarChart: UIView {
     // MARK: Variables
     
     var chartData: (List: [[[Expense]]], labels: [String], tags: [Tag]) = ([[[Expense]]](), [String](), [Tag]())
+    var selectedBarData: Int = 0
     
     public  var xLabels: NSArray = [] {
         
@@ -431,8 +432,10 @@ public class PNBarChart: UIView {
     public func touchPoint(location: CGPoint) {
         
         if let subview = hitTest(location, withEvent: nil) {
+            
             if subview.tag != 0 {
                 self.delegate?.userClickedOnBar(listOfExpenses[subview.tag - 1])
+                selectedBarData = subview.tag - 1
             }
         }
         

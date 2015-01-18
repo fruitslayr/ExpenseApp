@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Coordinate" representedClassName="ExpenseAppv4.Coordinate" syncable="YES">
+    <entity name="Coordinate" representedClassName="ExpenseTrackr.Coordinate" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="expense" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Expense" inverseName="coordinate" inverseEntity="Expense" syncable="YES"/>
     </entity>
-    <entity name="Expense" representedClassName="ExpenseAppv4.Expense" syncable="YES">
+    <entity name="Expense" representedClassName="ExpenseTrackr.Expense" syncable="YES">
         <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="dateAndTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="coordinate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Coordinate" inverseName="expense" inverseEntity="Coordinate" syncable="YES"/>
         <relationship name="tag" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tag" inverseName="expense" inverseEntity="Tag" syncable="YES"/>
     </entity>
-    <entity name="Tag" representedClassName="ExpenseAppv4.Tag" syncable="YES">
+    <entity name="Tag" representedClassName="ExpenseTrackr.Tag" syncable="YES">
         <attribute name="color" optional="YES" attributeType="Transformable" valueTransformerName="" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,7 +20,7 @@
     </entity>
     <elements>
         <element name="Coordinate" positionX="-63" positionY="45" width="128" height="88"/>
-        <element name="Expense" positionX="-54" positionY="18" width="128" height="120"/>
+        <element name="Expense" positionX="-54" positionY="18" width="128" height="118"/>
         <element name="Tag" positionX="-63" positionY="-18" width="128" height="103"/>
     </elements>
 </model>

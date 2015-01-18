@@ -16,19 +16,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD9-fa-v0K">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aD9-fa-v0K" userLabel="graphView">
                                 <rect key="frame" x="0.0" y="214" width="320" height="354"/>
-                                <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ACu-Py-nGt">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="354"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b0o-fV-IQU" userLabel="Content View">
-                                                <rect key="frame" x="0.0" y="0.0" width="320" height="354"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </view>
-                                        </subviews>
-                                    </scrollView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yWB-9m-bmW">
@@ -66,9 +55,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="barScrollView" destination="ACu-Py-nGt" id="FqK-oD-sEn"/>
                         <outlet property="detailHeading" destination="dOE-8I-8c9" id="Dri-Db-aha"/>
                         <outlet property="detailScrollView" destination="4Vh-1v-6fQ" id="fHY-gY-hyF"/>
+                        <outlet property="graphView" destination="aD9-fa-v0K" id="OEj-HN-n05"/>
                         <segue destination="TDH-qC-2VK" kind="push" identifier="showExpenses" id="dm8-sG-sqm"/>
                     </connections>
                 </viewController>
@@ -189,7 +178,7 @@
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="174" id="9bt-8U-QXG">
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9bt-8U-QXG" id="9DI-24-OlN">
+                                        <tableViewCellContentView key="contentView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9bt-8U-QXG" id="9DI-24-OlN">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VBn-DE-WQ3">

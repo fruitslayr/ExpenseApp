@@ -30,7 +30,7 @@ class CoreDataStack {
     
     let documentsURL = applicationDocumentsDirectory()
     let storeURL =
-    documentsURL.URLByAppendingPathComponent("ExpenseApp")
+    documentsURL.URLByAppendingPathComponent("ExpenseApp") //NEVER CHANGE THIS between shipping
     
     let options =
     [NSMigratePersistentStoresAutomaticallyOption: true]
