@@ -29,5 +29,9 @@ struct appColor {
     //UIColor(red: 53/255.0, green: 168/255.0, blue: 161/255.0, alpha: 1)
     //UIColor(red: 66/255.0, green: 210/255.0, blue: 201/255.0, alpha: 1)
     
+    static var limitLabelColor = UIColor(red: 140/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1)
+    static var limitLineColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)
+
+    
 }
 

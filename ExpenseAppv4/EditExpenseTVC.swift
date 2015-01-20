@@ -41,7 +41,7 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let coordinate = expenseItem.coordinate {
             setLocation = CLLocationCoordinate2D(latitude: coordinate.latitude.doubleValue, longitude: coordinate.longitude.doubleValue)
         } else {

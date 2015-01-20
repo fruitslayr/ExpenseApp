@@ -20,6 +20,7 @@
 		6E6863AE1A52266800317A19 /* PickerTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6863AD1A52266800317A19 /* PickerTF.swift */; };
 		6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */; };
 		6E7F94AC1A6230880091B581 /* DetailBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F94AB1A6230880091B581 /* DetailBarController.swift */; };
+		6EA661B51A6E2C3300D27BA2 /* PNChartLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B41A6E2C3300D27BA2 /* PNChartLabel.swift */; };
 		6EB308711A5687860002DFA0 /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */; };
 		6EB308721A5687860002DFA0 /* UIView+AccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308701A5687860002DFA0 /* UIView+AccessViewController.m */; };
 		6EB308781A56B5FC0002DFA0 /* SetLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308771A56B5FC0002DFA0 /* SetLocationVC.swift */; };
@@ -40,9 +41,6 @@
 		6EDA82611A511FF00020D53C /* PNBarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82581A511FF00020D53C /* PNBarChart.swift */; };
 		6EDA82621A511FF00020D53C /* PNChartConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82591A511FF00020D53C /* PNChartConfig.swift */; };
 		6EDA82631A511FF00020D53C /* PNChartDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA825A1A511FF00020D53C /* PNChartDelegate.swift */; };
-		6EDA82641A511FF00020D53C /* PNChartLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA825C1A511FF00020D53C /* PNChartLabel.swift */; };
-		6EDA82651A511FF00020D53C /* PNLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA825D1A511FF00020D53C /* PNLineChart.swift */; };
-		6EDA82661A511FF00020D53C /* PNLineChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA825E1A511FF00020D53C /* PNLineChartData.swift */; };
 		6EDA82671A511FF00020D53C /* PNValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA825F1A511FF00020D53C /* PNValue.swift */; };
 		6EFBD7651A52E3F7007E9977 /* HRBrightnessCursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFBD7561A52E3F7007E9977 /* HRBrightnessCursor.m */; };
 		6EFBD7661A52E3F7007E9977 /* HRBrightnessSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EFBD7581A52E3F7007E9977 /* HRBrightnessSlider.m */; };
@@ -84,6 +82,7 @@
 		6E6863AD1A52266800317A19 /* PickerTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTF.swift; sourceTree = "<group>"; };
 		6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		6E7F94AB1A6230880091B581 /* DetailBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailBarController.swift; sourceTree = "<group>"; };
+		6EA661B41A6E2C3300D27BA2 /* PNChartLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNChartLabel.swift; path = ../../../../../../../.Trash/PNChartLabel.swift; sourceTree = "<group>"; };
 		6EB3086D1A5687860002DFA0 /* MSCellAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCellAccessory.h; sourceTree = "<group>"; };
 		6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCellAccessory.m; sourceTree = "<group>"; };
 		6EB3086F1A5687860002DFA0 /* UIView+AccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AccessViewController.h"; sourceTree = "<group>"; };
@@ -110,9 +109,6 @@
 		6EDA82581A511FF00020D53C /* PNBarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNBarChart.swift; sourceTree = "<group>"; };
 		6EDA82591A511FF00020D53C /* PNChartConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNChartConfig.swift; sourceTree = "<group>"; };
 		6EDA825A1A511FF00020D53C /* PNChartDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNChartDelegate.swift; sourceTree = "<group>"; };
-		6EDA825C1A511FF00020D53C /* PNChartLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNChartLabel.swift; sourceTree = "<group>"; };
-		6EDA825D1A511FF00020D53C /* PNLineChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNLineChart.swift; sourceTree = "<group>"; };
-		6EDA825E1A511FF00020D53C /* PNLineChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNLineChartData.swift; sourceTree = "<group>"; };
 		6EDA825F1A511FF00020D53C /* PNValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PNValue.swift; sourceTree = "<group>"; };
 		6EFBD7551A52E3F7007E9977 /* HRBrightnessCursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRBrightnessCursor.h; sourceTree = "<group>"; };
 		6EFBD7561A52E3F7007E9977 /* HRBrightnessCursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRBrightnessCursor.m; sourceTree = "<group>"; };
@@ -287,7 +283,6 @@
 				6EDA82561A511FF00020D53C /* PNBarChart */,
 				6EDA82591A511FF00020D53C /* PNChartConfig.swift */,
 				6EDA825A1A511FF00020D53C /* PNChartDelegate.swift */,
-				6EDA825B1A511FF00020D53C /* PNLineChart */,
 				6EDA825F1A511FF00020D53C /* PNValue.swift */,
 			);
 			path = PNChart;
@@ -298,18 +293,9 @@
 			children = (
 				6EDA82571A511FF00020D53C /* PNBar.swift */,
 				6EDA82581A511FF00020D53C /* PNBarChart.swift */,
+				6EA661B41A6E2C3300D27BA2 /* PNChartLabel.swift */,
 			);
 			path = PNBarChart;
-			sourceTree = "<group>";
-		};
-		6EDA825B1A511FF00020D53C /* PNLineChart */ = {
-			isa = PBXGroup;
-			children = (
-				6EDA825C1A511FF00020D53C /* PNChartLabel.swift */,
-				6EDA825D1A511FF00020D53C /* PNLineChart.swift */,
-				6EDA825E1A511FF00020D53C /* PNLineChartData.swift */,
-			);
-			path = PNLineChart;
 			sourceTree = "<group>";
 		};
 		6EFBD76D1A52E3FB007E9977 /* Color Picker */ = {
@@ -443,12 +429,10 @@
 			files = (
 				6E7F94AC1A6230880091B581 /* DetailBarController.swift in Sources */,
 				6EFBD7651A52E3F7007E9977 /* HRBrightnessCursor.m in Sources */,
-				6EDA82651A511FF00020D53C /* PNLineChart.swift in Sources */,
 				6ED05D9E1A6B324400C34D5C /* customTableViewCell.swift in Sources */,
 				6EFBD76A1A52E3F7007E9977 /* HRColorPickerView.m in Sources */,
 				6E6863AE1A52266800317A19 /* PickerTF.swift in Sources */,
 				6EDA82611A511FF00020D53C /* PNBarChart.swift in Sources */,
-				6EDA82661A511FF00020D53C /* PNLineChartData.swift in Sources */,
 				6EB308721A5687860002DFA0 /* UIView+AccessViewController.m in Sources */,
 				6E4034EB1A5135E700354D8C /* NonCopyPasteTF.swift in Sources */,
 				6EFBD76C1A52E3F7007E9977 /* UIImage+CoreGraphics.m in Sources */,
@@ -457,12 +441,12 @@
 				6EB308711A5687860002DFA0 /* MSCellAccessory.m in Sources */,
 				6EB308781A56B5FC0002DFA0 /* SetLocationVC.swift in Sources */,
 				6E263CF61A5C9438006D541A /* ChartDataController.swift in Sources */,
+				6EA661B51A6E2C3300D27BA2 /* PNChartLabel.swift in Sources */,
 				6EFBD7791A52EACC007E9977 /* ColorPickerViewController.swift in Sources */,
 				6EC137861A5B433E0046AEFD /* ExpenseApp.xcdatamodeld in Sources */,
 				6E437A791A5BAD8200B1D01D /* Coordinate.swift in Sources */,
 				6E2B32441A629A260024EC09 /* EditExpenseTVC.swift in Sources */,
 				6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */,
-				6EDA82641A511FF00020D53C /* PNChartLabel.swift in Sources */,
 				6E437A7B1A5BAD8200B1D01D /* Tag.swift in Sources */,
 				6EDA82541A511FBD0020D53C /* appColor.swift in Sources */,
 				6EDA824C1A511FBD0020D53C /* AppDelegate.swift in Sources */,

@@ -34,6 +34,10 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     
     var canPinch = true
     
+    //Limit details
+    var limitLine = UIImageView()
+    var limitLabel = UILabel()
+    
     //Indictor for graph loading
     let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
@@ -53,6 +57,9 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         //UIActivityIndicator to show when graphView is loading
         spinner.center = CGPointMake(graphView.frame.size.width / 2, graphView.frame.size.height / 2)
         spinner.color = UIColor.lightGrayColor()
+        
+        //create limit line
+        limitLine = drawLimit()
 
     }
 
@@ -110,12 +117,14 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
                 currentScrollView = 0
             }
 
-            let scrollView = newSizedScrollView(createBarGraph(graphDataToDisplay))
+            let scrollView = newSizedScrollView(createBarGraph(graphDataToDisplay, viewType: currentScrollView))
             listOfGraphScrollViews[currentScrollView] = scrollView
             graphView.addSubview(listOfGraphScrollViews[currentScrollView]!)
             
             let barChart = scrollView.subviews[0] as PNBarChart
             updateDetailBar(barChart.chartData.List[barChart.selectedBarData])
+            
+            addLimitDetails()
             
         } else if instructions == false {
             let message = UILabel(frame: CGRectMake(10, 0, 300, 80))
@@ -160,7 +169,6 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             button.addTarget(self, action: "errorEmail:", forControlEvents: .TouchUpInside)
             graphView.addSubview(button)
         }
-
     }
 
     //Methods to hangle user interaction:
@@ -185,7 +193,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         let scrollView = listOfGraphScrollViews[currentScrollView]! as UIScrollView
         let barChart = scrollView.subviews[0] as PNBarChart
 
-        let touchPoint = gestureRecognizer.locationInView(scrollView)
+        let touchPoint = gestureRecognizer.locationInView(barChart)
         barChart.touchPoint(touchPoint)
     }
 
@@ -198,10 +206,11 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     } 
 
 
-    func createBarGraph(data: (List: [[[Expense]]], labels: [String], tags: [Tag])) -> PNBarChart {
+    func createBarGraph(data: (List: [[[Expense]]], labels: [String], tags: [Tag]), viewType: Int) -> PNBarChart {
         
         let currentBarChart = PNBarChart(frame: CGRectMake(0, 0, 640, 354))
         
+        currentBarChart.viewType = viewType
         currentBarChart.backgroundColor = UIColor.clearColor()
         currentBarChart.labelMarginTop = 5.0
         
@@ -214,6 +223,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         currentBarChart.listOfExpenses = data.List.reverse()
         
         currentBarChart.strokeColors = []
+        currentBarChart.yValueMax = CGFloat((genLimitAmount(viewType) / 3) * 4)
         
         for tag in data.tags {
             currentBarChart.strokeColors.append(tag.color)
@@ -225,6 +235,97 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         
         return currentBarChart
 
+    }
+    
+    //Handle transition of limitDetails to view
+    func addLimitDetails() {
+        
+        limitLabel = labelLimit()
+        
+        graphView.addSubview(limitLabel)
+        graphView.addSubview(limitLine)
+        
+        UIView.animateWithDuration(0.3, animations: {
+            self.limitLine.alpha = 0.4
+            self.limitLabel.alpha = 0.6
+            })
+    }
+    
+    func removeLimitDetails() {
+        
+        UIView.animateWithDuration(0.3, animations: {
+            self.limitLine.alpha = 0
+            self.limitLabel.alpha = 0
+            }, completion: {(bool) in
+                self.limitLabel.removeFromSuperview()
+                self.limitLine.removeFromSuperview()
+            })
+        
+    }
+    
+    //Handle display of limit
+    func drawLimit() -> UIImageView{
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(320, 1), false, 0)
+        
+        //Get current image context
+        let context = UIGraphicsGetCurrentContext()
+        
+        // Perform the drawing
+        CGContextSetLineWidth(context, 1)
+        CGContextSetStrokeColorWithColor(context,
+            appColor.limitLineColor.CGColor)
+        CGContextMoveToPoint(context, 0, 0.5)
+        CGContextAddLineToPoint(context, 320, 0.5)
+        CGContextStrokePath(context)
+        
+        // Retrieve the drawn image
+        let imageView = UIImageView(frame: CGRectMake(0, 93, 320, 1))
+        imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+        imageView.alpha = 0.0
+        
+        UIGraphicsEndImageContext()
+        
+        return imageView
+    }
+    
+    func labelLimit() -> UILabel {
+        let myText: UILabel = UILabel(frame: CGRectMake(0, 0 , 100, 25))
+        myText.font = UIFont.systemFontOfSize(16)
+        
+        //let someDoubleFormat = ".2"
+        //myText.text = "\(getCurrencySymbol()) \(genLimitAmount(currentScrollView).format(someDoubleFormat))"
+        myText.text = "\(getCurrencySymbol()) \(Int(round(genLimitAmount(currentScrollView))))"
+        myText.textColor = appColor.limitLabelColor
+        myText.sizeToFit()
+        myText.alpha = 0
+        
+        //For testing purposes
+        //myText.layer.borderWidth = 1
+        //myText.layer.borderColor = UIColor.redColor().CGColor
+                
+        myText.frame = CGRectMake(10, 91 - myText.frame.size.height , myText.frame.size.width, myText.frame.size.height)
+        
+        return myText
+    }
+    
+    func genLimitAmount(viewType: Int) -> Double {
+        var limitPerDay: Double = 0
+        
+        if let weeklyLimitIsNotNil = defaults.objectForKey("weeklyLimit") as? String {
+            limitPerDay = (defaults.objectForKey("weeklyLimit") as NSString).doubleValue / 7
+        }
+        
+        switch viewType {
+        case 0:
+            return limitPerDay
+        case 1:
+            return limitPerDay*7
+        case 2:
+            return limitPerDay*30
+        default:
+            println("Error")
+            return limitPerDay
+        }
     }
     
     //generates newscrollView for a given PNBarChart
@@ -250,6 +351,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         }
         
         newScrollView.addSubview(view)
+        
         return newScrollView
     }
     
@@ -304,9 +406,11 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             return
         }
         
+        removeLimitDetails()
+        
         if let scrollViewToAdd = listOfGraphScrollViews[currentScrollView + 1] {
             scrollViewToAdd.alpha = 0
-            scrollViewToAdd.transform = CGAffineTransformMakeScale(1.6, 1.6)
+            scrollViewToAdd.transform = CGAffineTransformMakeScale(1.3, 1.3)
             graphView.insertSubview(scrollViewToAdd, aboveSubview: scrollViewToHide)
             
             let barChart = scrollViewToAdd.subviews[0] as PNBarChart
@@ -316,14 +420,14 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             var graphToDisplay: PNBarChart!
             
             if currentScrollView + 1 == 1 {
-                graphToDisplay = createBarGraph(chartDataController.weekly())
+                graphToDisplay = createBarGraph(chartDataController.weekly(), viewType: currentScrollView + 1)
             } else if currentScrollView + 1 == 2 {
-                graphToDisplay = createBarGraph(chartDataController.monthly())
+                graphToDisplay = createBarGraph(chartDataController.monthly(), viewType: currentScrollView + 1)
             }
             
             let newScrollView = newSizedScrollView(graphToDisplay)
             newScrollView.alpha = 0
-            newScrollView.transform = CGAffineTransformMakeScale(1.6, 1.6)
+            newScrollView.transform = CGAffineTransformMakeScale(1.3, 1.3)
             graphView.insertSubview(newScrollView, aboveSubview: scrollViewToHide)
             
             let barChart = newScrollView.subviews[0] as PNBarChart
@@ -334,21 +438,26 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         
         let scrollViewToAnimate = graphView.subviews[1] as UIScrollView
         
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.5, delay: 0.0, options: nil,  animations: {
             scrollViewToAnimate.transform = CGAffineTransformMakeScale(1, 1)
             scrollViewToAnimate.alpha = 1
             scrollViewToHide.alpha = 0
             }, completion: {(bool) in
                 self.listOfGraphScrollViews[self.currentScrollView] = scrollViewToHide
                 scrollViewToHide.removeFromSuperview()
+                self.listOfGraphScrollViews[self.currentScrollView + 1] = scrollViewToAnimate
                 self.currentScrollView = self.currentScrollView + 1
+
                 self.canPinch = true
+                self.addLimitDetails()
+
         })
         
     }
     
     
     @IBAction func zoomIn() {
+        
         
         let scrollViewToHide = graphView.subviews[0] as UIScrollView
         var scrollViewToAnimate = UIScrollView()
@@ -357,6 +466,8 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             self.canPinch = true
             return
         }
+        
+        removeLimitDetails()
         
         if let scrollViewToAdd = listOfGraphScrollViews[currentScrollView - 1] {
             scrollViewToAdd.alpha = 0
@@ -371,9 +482,9 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             var graphToDisplay: PNBarChart!
             
             if currentScrollView - 1 == 1 {
-                graphToDisplay = createBarGraph(chartDataController.weekly())
+                graphToDisplay = createBarGraph(chartDataController.weekly(), viewType: currentScrollView - 1)
             } else if currentScrollView - 1 == 0 {
-                graphToDisplay = createBarGraph(chartDataController.daily())
+                graphToDisplay = createBarGraph(chartDataController.daily(), viewType: currentScrollView - 1)
             }
             
             let newScrollView = newSizedScrollView(graphToDisplay)
@@ -387,15 +498,19 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             
         }
         
-        UIView.animateWithDuration(0.5, animations: {
-            scrollViewToHide.transform = CGAffineTransformMakeScale(1.6, 1.6)
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: {
+            scrollViewToHide.transform = CGAffineTransformMakeScale(1.3, 1.3)
             scrollViewToHide.alpha = 0.0
             scrollViewToAnimate.alpha = 1.0
             }, completion: {(bool) in
                 self.listOfGraphScrollViews[self.currentScrollView] = scrollViewToHide
                 scrollViewToHide.removeFromSuperview()
+                self.listOfGraphScrollViews[self.currentScrollView - 1] = scrollViewToAnimate
                 self.currentScrollView = self.currentScrollView - 1
+
                 self.canPinch = true
+                self.addLimitDetails()
         })
         
     }
@@ -473,6 +588,29 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             errorAlert.show()
         }
     }
+    
+    //return currencySymbol as String
+    func getCurrencySymbol() -> String {
+        var output = ""
+        
+        if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
+            let symbol = defaults.objectForKey("currencySymbol") as Int
+            switch symbol {
+            case 0:
+                output += "$"
+            case 1:
+                output += "£"
+            case 2:
+                output += "€"
+            default:
+                output = ""
+            }
+        }
+        
+        return output
+        
+    }
+
     
     func platform() -> String {
         var size : UInt = 0

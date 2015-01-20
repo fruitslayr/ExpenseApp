@@ -77,7 +77,6 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         
         mailComposerVC.navigationBar.tintColor = UIColor.whiteColor()
         
-        mailComposerVC.setToRecipients(["fruitslayr@icloud.com"])
         mailComposerVC.setSubject("Export Expenses")
         
         var emailBody = "\n\n\n\n\n*****Expense items*****\n"

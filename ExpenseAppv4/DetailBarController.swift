@@ -63,6 +63,7 @@ class DetailBarController {
             myText.font = UIFont.systemFontOfSize(14)
             myText.text = tag.text
             myText.sizeToFit()
+
             var myPrice: UILabel = UILabel(frame: CGRectMake(positionTracker, 25, 100, 25))
             myPrice.font = UIFont.systemFontOfSize(14)
             myPrice.textColor = appColor.defaultTintColor
@@ -109,11 +110,7 @@ class DetailBarController {
         
         return viewToReturn
     }
-    
-    func showMore() {
-        println("Runs2")
-    }
-    
+
     //creating UIImage with designated color
     func imageWithColor(color: UIColor) -> UIImage {
         var rect = CGRectMake(0, 0, 30, 30)

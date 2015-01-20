@@ -45,9 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navController = window!.rootViewController as UINavigationController
         let viewController = navController.topViewController as HomeVC
         viewController.coreDataStack = coreDataStack
-        
-        //testForExpense()
-        
+                
         return true
     }
     

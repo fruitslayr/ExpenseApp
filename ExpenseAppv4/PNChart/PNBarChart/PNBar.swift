@@ -10,6 +10,7 @@ import UIKit
 import QuartzCore
 
 class PNBar:UIView {
+        
     var grade: [CGFloat] = [] {
         didSet {
             
@@ -28,7 +29,7 @@ class PNBar:UIView {
             progressline.addLineToPoint(prevMoveToPoint)
             progressline.lineWidth = 1.0
             progressline.lineCapStyle = kCGLineCapSquare
-            chartLine[i].path = progressline.CGPath //PROBLEM IN CODE HERE (Array index out of range)
+            chartLine[i].path = progressline.CGPath
             chartLine[i].strokeColor = barColor[i].CGColor
                 
             /*
@@ -43,15 +44,12 @@ class PNBar:UIView {
             chartLine[i].strokeEnd = 1.0
             
             UIGraphicsEndImageContext()
+                
             }
         }
     }
     var chartLine: [CAShapeLayer] = []
     var barColor: [UIColor] = []
-    
-    //This is not used!!
-    var chartLineArray: [CAShapeLayer] = []
-    var barColorArray: [UIColor] = []
     
     var barRadius: CGFloat = 0.0 {
         didSet {
@@ -73,7 +71,8 @@ class PNBar:UIView {
     {
         super.init(frame: frame)
         barColor = colors
-        for i in 0..<barColor.count { //THIS WON'T WORK!!!
+                
+        for i in 0..<barColor.count {
             chartLine.append(CAShapeLayer())
             chartLine[i].lineCap      = kCALineCapButt
             chartLine[i].fillColor    = UIColor.whiteColor().CGColor
@@ -83,8 +82,10 @@ class PNBar:UIView {
             backgroundColor = PNLightGreyColor
             layer.addSublayer(chartLine[i])
             
+            
             barRadius = 2.0 //does nothing as overriden in PNBarChart.swift
         }
+        
 
     }
     

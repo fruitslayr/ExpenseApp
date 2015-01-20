@@ -15,6 +15,9 @@ public class PNBarChart: UIView {
     
     var chartData: (List: [[[Expense]]], labels: [String], tags: [Tag]) = ([[[Expense]]](), [String](), [Tag]())
     var selectedBarData: Int = 0
+    var chartCavanHeight = CGFloat(0)
+    var viewType = 0
+    var listOfLabels = [UILabel]()
     
     public  var xLabels: NSArray = [] {
         
@@ -27,13 +30,13 @@ public class PNBarChart: UIView {
     }
     var labels: NSMutableArray = []
     var yLabels: NSArray = []
-    public var yValues: [[Int]] = [] {
+    public var yValues: [[Double]] = [] {
         didSet{
             if (yMaxValue != nil) {
                 yValueMax = yMaxValue
                 //I can set a maximum y Value or iterate to find the maximum
             }else{
-                self.getYValueMax(yValues)
+                //self.getYValueMax(yValues)
             }
             
             xLabelWidth = (self.frame.size.width) / CGFloat(yValues.count)
@@ -43,7 +46,7 @@ public class PNBarChart: UIView {
     
     var bars: NSMutableArray = []
     public var xLabelWidth:CGFloat!
-    public var yValueMax: CGFloat!
+    public var yValueMax = CGFloat()
     public var strokeColor: UIColor = PNGreenColor
     public var strokeColors: [UIColor] = []
     public var xLabelHeight:CGFloat = 11.0
@@ -151,18 +154,18 @@ public class PNBarChart: UIView {
     // MARK: Functions
     
     
-    func summedExpenseByTags() -> [[Int]] {
-        var listToReturn: [[Int]] = []
+    func summedExpenseByTags() -> [[Double]] {
+        var listToReturn: [[Double]] = []
         
         for i in 0..<listOfExpenses.count {
-            var tempArray = [Int]()
+            var tempArray = [Double]()
             
             for j in 0..<listOfExpenses[i].count {
                 
-                var count = 0
+                var count = 0.0
                 
                 for k in 0..<listOfExpenses[i][j].count {
-                    count += listOfExpenses[i][j][k].amount.integerValue
+                    count += listOfExpenses[i][j][k].amount.doubleValue
                 }
                 
 
@@ -214,47 +217,40 @@ public class PNBarChart: UIView {
                     labelAddCount = 0
                     
                     labels.addObject(label)
+                    listOfLabels.append(label)
                     self.addSubview(label)
                 }
             }
             
-            //Add y labels
-            /*
-            var yLabelSectionHeight:CGFloat = (self.frame.size.height - chartMargin * 2.0 - xLabelHeight) / CGFloat(yLabelSum)
-            
-            for var index:Int = 0; index < yLabelSum; ++index {
-                var labelText:NSString = yLabelFormatter((yValueMax * ( CGFloat(yLabelSum - index) / CGFloat(yLabelSum) ) ))
-                    
-                var label:PNChartLabel = PNChartLabel(frame: CGRectMake(0,yLabelSectionHeight * CGFloat(index) + chartMargin - yLabelHeight/2.0, yChartLabelWidth, yLabelHeight))
-                
-                label.font = labelFont
-                label.textColor = labelTextColor
-                label.textAlignment = NSTextAlignment.Right
-                label.text = labelText
-                
-                labels.addObject(label)
-                self.addSubview(label)
-            }
-            */
         }
         
         self.viewCleanupForCollection(bars)
         //Add bars
-        var chartCavanHeight:CGFloat = frame.size.height  - chartMargin * 2 - xLabelHeight
+        chartCavanHeight = frame.size.height  - chartMargin * 2 - xLabelHeight
         var index:Int = 0
-        
-        //////////////////////////////////////////
-        //////////Working on current code ////////
-        //////////////////////////////////////////
         
         yValues = summedExpenseByTags()
         
-        for intArray in yValues{            
+        for intArray in yValues {
             
             var grade: [CGFloat] = []
+            var totalValueForTag = 0.0
+            var overMaxValue = false
             
             for i in 0..<intArray.count {
-                grade.append(CGFloat(intArray[i]) / yValueMax )//percentage value
+                
+                totalValueForTag += intArray[i]
+            }
+            
+            if CGFloat(totalValueForTag) > yValueMax {
+                for i in 0..<intArray.count {
+                    grade.append(CGFloat(intArray[i] / totalValueForTag ))//percentage value
+                }
+                overMaxValue = true
+            } else {
+                for i in 0..<intArray.count {
+                    grade.append(CGFloat(intArray[i]) / yValueMax )//percentage value
+                }
             }
             
             var bar:PNBar!
@@ -292,6 +288,11 @@ public class PNBarChart: UIView {
                 bar.grade.append(grade[i])
             }
             
+            if (overMaxValue) {
+                bar.alpha = 0.4
+                listOfLabels[index].textColor = UIColor.redColor()
+            }
+            
             //For Click Index
             bar.tag = index  + 1
             
@@ -301,71 +302,6 @@ public class PNBarChart: UIView {
             addSubview(bar)
             
             index += 1
-        }
-        
-        //Add chart border lines
-        
-        if showChartBorder{
-            chartBottomLine = CAShapeLayer()
-            chartBottomLine.lineCap      = kCALineCapButt
-            chartBottomLine.fillColor    = UIColor.whiteColor().CGColor
-            chartBottomLine.lineWidth    = 1.0
-            chartBottomLine.strokeEnd    = 0.0
-            
-            var progressline:UIBezierPath = UIBezierPath()
-            
-            progressline.moveToPoint(CGPointMake(chartMargin, frame.size.height - xLabelHeight - chartMargin))
-            progressline.addLineToPoint(CGPointMake(frame.size.width - chartMargin,  frame.size.height - xLabelHeight - chartMargin))
-            
-            progressline.lineWidth = 1.0
-            progressline.lineCapStyle = kCGLineCapSquare
-            chartBottomLine.path = progressline.CGPath
-            
-            
-            chartBottomLine.strokeColor = PNLightGreyColor.CGColor;
-            
-            
-            var pathAnimation:CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-            pathAnimation.duration = 0.5
-            pathAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            pathAnimation.fromValue = 0.0
-            pathAnimation.toValue = 1.0
-            chartBottomLine.addAnimation(pathAnimation, forKey:"strokeEndAnimation")
-            chartBottomLine.strokeEnd = 1.0;
-            
-            layer.addSublayer(chartBottomLine)
-            
-            //Add left Chart Line
-            
-            chartLeftLine = CAShapeLayer()
-            chartLeftLine.lineCap      = kCALineCapButt
-            chartLeftLine.fillColor    = UIColor.whiteColor().CGColor
-            chartLeftLine.lineWidth    = 1.0
-            chartLeftLine.strokeEnd    = 0.0
-            
-            var progressLeftline:UIBezierPath = UIBezierPath()
-            
-            progressLeftline.moveToPoint(CGPointMake(chartMargin, frame.size.height - xLabelHeight - chartMargin))
-            progressLeftline.addLineToPoint(CGPointMake(chartMargin,  chartMargin))
-            
-            progressLeftline.lineWidth = 1.0
-            progressLeftline.lineCapStyle = kCGLineCapSquare
-            chartLeftLine.path = progressLeftline.CGPath
-            
-            
-            chartLeftLine.strokeColor = PNLightGreyColor.CGColor
-            
-            
-            var pathLeftAnimation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-            pathLeftAnimation.duration = 0.5
-            pathLeftAnimation.timingFunction =  CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-            pathLeftAnimation.fromValue = 0.0
-            pathLeftAnimation.toValue = 1.0
-            chartLeftLine.addAnimation(pathAnimation, forKey:"strokeEndAnimation")
-            
-            chartLeftLine.strokeEnd = 1.0
-            
-            layer.addSublayer(chartLeftLine)
         }
         
     }
@@ -395,6 +331,7 @@ public class PNBarChart: UIView {
         
         var max = 0
         
+        
         for i in yLabels {
             if sumOfIntArray(i) > max {
                 max = sumOfIntArray(i)
@@ -404,11 +341,11 @@ public class PNBarChart: UIView {
         if max == 0 {
             yValueMax = yMinValue
         }else{
-            yValueMax = CGFloat(max)
+            //yValueMax = CGFloat(max) &&&*&*^)(*&)(*%(* MADE A CHANGE HERE TO yVALUE MAX!!!!!!
         }
         
     }
-    
+
     /*
     override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
     {
@@ -449,7 +386,7 @@ public class PNBarChart: UIView {
     {
         super.init(frame: frame)
         barBackgroundColor = PNLightGreyColor
-        clipsToBounds = true        
+        clipsToBounds = true
     }
     
     required public init(coder aDecoder: NSCoder) {
