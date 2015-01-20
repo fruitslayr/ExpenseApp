@@ -289,8 +289,39 @@ public class PNBarChart: UIView {
             }
             
             if (overMaxValue) {
-                bar.alpha = 0.4
-                listOfLabels[index].textColor = UIColor.redColor()
+                //////////////Style choices////////////////
+                
+                //bar.alpha = 0.4
+                //listOfLabels[index].textColor = UIColor.redColor()
+                
+                ///////////////////////////////////////////
+                
+                //create white diagonal line
+                UIGraphicsBeginImageContextWithOptions(bar.frame.size, false, 0)
+                
+                //Get current image context
+                let context = UIGraphicsGetCurrentContext()
+                
+                // Perform the drawing
+                CGContextSetLineWidth(context, 3)
+                CGContextSetStrokeColorWithColor(context, UIColor.whiteColor().CGColor)
+                
+                CGContextMoveToPoint(context, -5, bar.frame.size.height/2 + 15 + 5)
+                CGContextAddLineToPoint(context, bar.frame.size.width + 5, bar.frame.size.height/2 - 15 + 5)
+                
+                CGContextMoveToPoint(context, -5, bar.frame.size.height/2 + 15 - 5)
+                CGContextAddLineToPoint(context, bar.frame.size.width + 5, bar.frame.size.height/2 - 15 - 5)
+                
+                CGContextStrokePath(context)
+                
+                // Retrieve the drawn image
+                let imageView = UIImageView(frame: CGRectMake(0, 0, bar.frame.size.width, bar.frame.size.height))
+                imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+                
+                UIGraphicsEndImageContext()
+                
+                bar.addSubview(imageView)
+                
             }
             
             //For Click Index
