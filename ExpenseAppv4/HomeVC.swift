@@ -44,6 +44,14 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let hasViewedWalkthrough = defaults.boolForKey("hasViewedWalkthrough")
+        
+        if hasViewedWalkthrough == false {
+            if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageVC") as? PageVC {
+                self.presentViewController(pageViewController, animated: false, completion: nil)
+            }
+        }
+        
         self.automaticallyAdjustsScrollViewInsets = false
 
         self.navigationItem.title = "ExpenseTrackr"

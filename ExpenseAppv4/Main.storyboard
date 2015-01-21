@@ -25,7 +25,6 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dOE-8I-8c9">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vh-1v-6fQ">
                                         <rect key="frame" x="0.0" y="100" width="320" height="50"/>
@@ -37,7 +36,7 @@
                                         </subviews>
                                     </scrollView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -611,6 +610,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZAo-se-R0U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2367" y="1126"/>
+        </scene>
+        <!--UIPageVC-->
+        <scene sceneID="WTG-g4-fgC">
+            <objects>
+                <viewController storyboardIdentifier="UIPageVC" title="UIPageVC" id="0Ea-LD-1St" customClass="UIPageVC" customModule="ExpenseTrackr" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UQb-m3-2b2"/>
+                        <viewControllerLayoutGuide type="bottom" id="yhl-6f-jhK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OFy-cf-SbF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cwn-EE-6cq">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwL-dK-NxB">
+                                <rect key="frame" x="107" y="74" width="106" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="Get started!">
+                                    <color key="titleColor" red="0.95499921085858586" green="0.92390632448200549" blue="0.95043595079393051" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dismiss" destination="0Ea-LD-1St" eventType="touchUpInside" id="SdQ-4j-7hh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oq3-gM-pqI">
+                                <rect key="frame" x="107" y="74" width="106" height="36"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="Get started!">
+                                    <color key="titleColor" red="1" green="0.61105373110000005" blue="0.43377043300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dismiss" destination="0Ea-LD-1St" eventType="touchUpInside" id="y7m-KV-NDs"/>
+                                </connections>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="dtM-O0-8iS">
+                                <rect key="frame" x="141" y="7" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.95310977620000004" green="0.94732613740000005" blue="0.97733191289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.98763495680000002" green="0.56700868829999995" blue="0.26514834500000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </pageControl>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="behindButton" destination="lwL-dK-NxB" id="EoS-ZB-eCv"/>
+                        <outlet property="contentImageView" destination="Cwn-EE-6cq" id="e3d-Fx-RaE"/>
+                        <outlet property="getStartedButton" destination="Oq3-gM-pqI" id="TDw-jt-Sz1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ntA-CZ-MYQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-470" y="-346.5"/>
+        </scene>
+        <!--PageVC-->
+        <scene sceneID="PKn-Hv-mko">
+            <objects>
+                <pageViewController storyboardIdentifier="PageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="3ia-MW-Ji2" customClass="PageVC" customModule="ExpenseTrackr" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6O8-q8-6SM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="162" y="-352"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="h7h-kn-WUv">

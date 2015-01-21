@@ -23,3 +23,7 @@
 #import "UIImage+CoreGraphics.h"
 
 #import "MSCellAccessory.h"
+
+#import "FBShimmering.h"
+#import "FBShimmeringLayer.h"
+#import "FBShimmeringView.h"

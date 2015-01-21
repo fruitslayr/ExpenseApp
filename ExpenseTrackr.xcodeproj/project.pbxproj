@@ -21,6 +21,10 @@
 		6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */; };
 		6E7F94AC1A6230880091B581 /* DetailBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F94AB1A6230880091B581 /* DetailBarController.swift */; };
 		6EA661B51A6E2C3300D27BA2 /* PNChartLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B41A6E2C3300D27BA2 /* PNChartLabel.swift */; };
+		6EA661B71A6F0F7200D27BA2 /* UIPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */; };
+		6EA661B91A6F874B00D27BA2 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B81A6F874B00D27BA2 /* PageVC.swift */; };
+		6EA661C11A6FC16400D27BA2 /* FBShimmeringLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661BE1A6FC16400D27BA2 /* FBShimmeringLayer.m */; };
+		6EA661C21A6FC16400D27BA2 /* FBShimmeringView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661C01A6FC16400D27BA2 /* FBShimmeringView.m */; };
 		6EB308711A5687860002DFA0 /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */; };
 		6EB308721A5687860002DFA0 /* UIView+AccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308701A5687860002DFA0 /* UIView+AccessViewController.m */; };
 		6EB308781A56B5FC0002DFA0 /* SetLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308771A56B5FC0002DFA0 /* SetLocationVC.swift */; };
@@ -83,6 +87,14 @@
 		6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		6E7F94AB1A6230880091B581 /* DetailBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailBarController.swift; sourceTree = "<group>"; };
 		6EA661B41A6E2C3300D27BA2 /* PNChartLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PNChartLabel.swift; path = ../../../../../../../.Trash/PNChartLabel.swift; sourceTree = "<group>"; };
+		6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPageVC.swift; sourceTree = "<group>"; };
+		6EA661B81A6F874B00D27BA2 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
+		6EA661BB1A6FC16400D27BA2 /* FBShimmering-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FBShimmering-Prefix.pch"; sourceTree = "<group>"; };
+		6EA661BC1A6FC16400D27BA2 /* FBShimmering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmering.h; sourceTree = "<group>"; };
+		6EA661BD1A6FC16400D27BA2 /* FBShimmeringLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringLayer.h; sourceTree = "<group>"; };
+		6EA661BE1A6FC16400D27BA2 /* FBShimmeringLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringLayer.m; sourceTree = "<group>"; };
+		6EA661BF1A6FC16400D27BA2 /* FBShimmeringView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FBShimmeringView.h; sourceTree = "<group>"; };
+		6EA661C01A6FC16400D27BA2 /* FBShimmeringView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FBShimmeringView.m; sourceTree = "<group>"; };
 		6EB3086D1A5687860002DFA0 /* MSCellAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCellAccessory.h; sourceTree = "<group>"; };
 		6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCellAccessory.m; sourceTree = "<group>"; };
 		6EB3086F1A5687860002DFA0 /* UIView+AccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AccessViewController.h"; sourceTree = "<group>"; };
@@ -163,10 +175,12 @@
 				6EDA82491A511FBD0020D53C /* SettingsTVC.swift */,
 				6EDA824A1A511FBD0020D53C /* ManageTagsTVC.swift */,
 				6EFBD7781A52EACC007E9977 /* ColorPickerViewController.swift */,
-				6E2B32431A629A260024EC09 /* EditExpenseTVC.swift */,
 				6EDA82481A511FBD0020D53C /* NewExpenseTVC.swift */,
 				6EB308771A56B5FC0002DFA0 /* SetLocationVC.swift */,
 				6E3EB1561A6281E00074186E /* DetailBarTVC.swift */,
+				6E2B32431A629A260024EC09 /* EditExpenseTVC.swift */,
+				6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */,
+				6EA661B81A6F874B00D27BA2 /* PageVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +205,20 @@
 				6EFBD76E1A52E550007E9977 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6EA661BA1A6FC16400D27BA2 /* FBShimmering */ = {
+			isa = PBXGroup;
+			children = (
+				6EA661BB1A6FC16400D27BA2 /* FBShimmering-Prefix.pch */,
+				6EA661BC1A6FC16400D27BA2 /* FBShimmering.h */,
+				6EA661BD1A6FC16400D27BA2 /* FBShimmeringLayer.h */,
+				6EA661BE1A6FC16400D27BA2 /* FBShimmeringLayer.m */,
+				6EA661BF1A6FC16400D27BA2 /* FBShimmeringView.h */,
+				6EA661C01A6FC16400D27BA2 /* FBShimmeringView.m */,
+			);
+			name = FBShimmering;
+			path = "../../../../../Downloads/Shimmer-master/FBShimmering";
 			sourceTree = "<group>";
 		};
 		6EB3086C1A5687860002DFA0 /* MSCellAccessory */ = {
@@ -243,6 +271,7 @@
 				6EC137841A5B433E0046AEFD /* ExpenseApp.xcdatamodeld */,
 				6E263CF71A5CE7AE006D541A /* NSManagedObjects */,
 				6E26707C1A57A30600771239 /* OneShotLocationManager.swift */,
+				6EA661BA1A6FC16400D27BA2 /* FBShimmering */,
 				6EDA82551A511FF00020D53C /* PNChart */,
 				6EB3086C1A5687860002DFA0 /* MSCellAccessory */,
 				6EFBD76D1A52E3FB007E9977 /* Color Picker */,
@@ -432,6 +461,7 @@
 				6ED05D9E1A6B324400C34D5C /* customTableViewCell.swift in Sources */,
 				6EFBD76A1A52E3F7007E9977 /* HRColorPickerView.m in Sources */,
 				6E6863AE1A52266800317A19 /* PickerTF.swift in Sources */,
+				6EA661B71A6F0F7200D27BA2 /* UIPageVC.swift in Sources */,
 				6EDA82611A511FF00020D53C /* PNBarChart.swift in Sources */,
 				6EB308721A5687860002DFA0 /* UIView+AccessViewController.m in Sources */,
 				6E4034EB1A5135E700354D8C /* NonCopyPasteTF.swift in Sources */,
@@ -444,6 +474,7 @@
 				6EA661B51A6E2C3300D27BA2 /* PNChartLabel.swift in Sources */,
 				6EFBD7791A52EACC007E9977 /* ColorPickerViewController.swift in Sources */,
 				6EC137861A5B433E0046AEFD /* ExpenseApp.xcdatamodeld in Sources */,
+				6EA661C11A6FC16400D27BA2 /* FBShimmeringLayer.m in Sources */,
 				6E437A791A5BAD8200B1D01D /* Coordinate.swift in Sources */,
 				6E2B32441A629A260024EC09 /* EditExpenseTVC.swift in Sources */,
 				6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */,
@@ -457,6 +488,7 @@
 				6EDA82531A511FBD0020D53C /* ManageTagsTVC.swift in Sources */,
 				6E437A7D1A5BAD8200B1D01D /* Expense.swift in Sources */,
 				6EDA82621A511FF00020D53C /* PNChartConfig.swift in Sources */,
+				6EA661B91A6F874B00D27BA2 /* PageVC.swift in Sources */,
 				6EDA82671A511FF00020D53C /* PNValue.swift in Sources */,
 				6EDA82601A511FF00020D53C /* PNBar.swift in Sources */,
 				6EFBD7671A52E3F7007E9977 /* HRColorCursor.m in Sources */,
@@ -466,6 +498,7 @@
 				6EFBD76B1A52E3F7007E9977 /* HRHSVColorUtil.m in Sources */,
 				6EFBD7661A52E3F7007E9977 /* HRBrightnessSlider.m in Sources */,
 				6EFBD7681A52E3F7007E9977 /* HRColorInfoView.m in Sources */,
+				6EA661C21A6FC16400D27BA2 /* FBShimmeringView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

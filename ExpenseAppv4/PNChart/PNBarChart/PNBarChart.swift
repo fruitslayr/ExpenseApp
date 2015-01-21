@@ -397,6 +397,9 @@ public class PNBarChart: UIView {
         self.delegate?.userClickedOnBarCharIndex(subview.tag)
     }*/
     
+    var prevBarSelect = UIView()
+    var prevLabelSelect = UILabel()
+    
     public func touchPoint(location: CGPoint) {
         
         if let subview = hitTest(location, withEvent: nil) {
@@ -404,6 +407,25 @@ public class PNBarChart: UIView {
             if subview.tag != 0 {
                 self.delegate?.userClickedOnBar(listOfExpenses[subview.tag - 1])
                 selectedBarData = subview.tag - 1
+
+                if subview == prevBarSelect {
+                    return
+                }
+                
+                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: nil, animations: {
+                
+                        subview.transform = CGAffineTransformMakeScale(1.05, 1.05)
+                        self.prevBarSelect.transform = CGAffineTransformMakeScale(1, 1)
+                    
+                        self.listOfLabels[subview.tag - 1].frame.origin = CGPointMake(self.listOfLabels[subview.tag - 1].frame.origin.x, self.listOfLabels[subview.tag - 1].frame.origin.y + 5)
+                        self.prevLabelSelect.frame.origin = CGPointMake(self.prevLabelSelect.frame.origin.x, self.prevLabelSelect.frame.origin.y - 5)
+
+                    }, completion: {(bool) in
+                        
+                        self.prevBarSelect = subview
+                        self.prevLabelSelect = self.listOfLabels[subview.tag - 1]
+                })
+                                
             }
         }
         
