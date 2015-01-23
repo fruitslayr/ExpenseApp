@@ -12,7 +12,7 @@ class UIPageVC: UIViewController {
 
     @IBOutlet weak var contentImageView: UIImageView!
     @IBOutlet weak var getStartedButton: UIButton!
-    @IBOutlet weak var behindButton: UIButton!
+    @IBOutlet weak var pageControl:UIPageControl!
     
     var index: Int = 0
     var heading: String = ""
@@ -25,17 +25,26 @@ class UIPageVC: UIViewController {
 
         // Do any additional setup after loading the view.
         contentImageView.image = UIImage(named: imageFile)
-        //progressButton = button
-        
+        pageControl.currentPage = index
         getStartedButton.layer.borderColor = UIColor(red: 252/255, green: 156/255, blue: 111/255, alpha: 1).CGColor
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("hasViewedWalkthrough"){
+            getStartedButton.setTitle("Close", forState: .Normal)
+        } else {
+            getStartedButton.setTitle("Get Started!", forState: .Normal)
+        }
         
         
         var shimmeringView = FBShimmeringView(frame: getStartedButton.frame)
         self.view.addSubview(shimmeringView)
         shimmeringView.contentView = getStartedButton
-        shimmeringView.shimmeringPauseDuration = 4
+        shimmeringView.shimmeringPauseDuration = 2
+        shimmeringView.shimmeringSpeed = 130
+        shimmeringView.shimmeringAnimationOpacity = 0.5
+
         shimmeringView.shimmering = true
-        shimmeringView.shimmeringSpeed = 100
+        
         
     }
 

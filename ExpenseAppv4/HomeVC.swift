@@ -53,9 +53,6 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         }
         
         self.automaticallyAdjustsScrollViewInsets = false
-
-        self.navigationItem.title = "ExpenseTrackr"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AmericanTypewriter", size: 24)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
         
         //initialize user interactions:
         singleTap = UITapGestureRecognizer(target: self, action: "handleTap:")
@@ -68,6 +65,10 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         
         //create limit line
         limitLine = drawLimit()
+        
+        //Set navigation bar title font
+//        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AmericanTypewriter", size: 24)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+
 
     }
 
@@ -130,7 +131,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             graphView.addSubview(listOfGraphScrollViews[currentScrollView]!)
             
             let barChart = scrollView.subviews[0] as PNBarChart
-            updateDetailBar(barChart.chartData.List[barChart.selectedBarData])
+            barChart.selectBar(0)
             
             addLimitDetails()
             
@@ -422,7 +423,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             graphView.insertSubview(scrollViewToAdd, aboveSubview: scrollViewToHide)
             
             let barChart = scrollViewToAdd.subviews[0] as PNBarChart
-            updateDetailBar(barChart.chartData.List[barChart.selectedBarData])
+            barChart.selectBar(0)
         } else {
             
             var graphToDisplay: PNBarChart!
@@ -439,8 +440,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             graphView.insertSubview(newScrollView, aboveSubview: scrollViewToHide)
             
             let barChart = newScrollView.subviews[0] as PNBarChart
-            updateDetailBar(barChart.chartData.List[barChart.selectedBarData])
-            
+            barChart.selectBar(0)
             
         }
         
@@ -482,7 +482,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             graphView.insertSubview(scrollViewToAdd, belowSubview: scrollViewToHide)
             
             let barChart = scrollViewToAdd.subviews[0] as PNBarChart
-            updateDetailBar(barChart.chartData.List[barChart.selectedBarData])
+            barChart.selectBar(0)
             
             scrollViewToAnimate = graphView.subviews[0] as UIScrollView
         } else {
@@ -500,7 +500,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             graphView.insertSubview(newScrollView, aboveSubview: scrollViewToHide)
             
             let barChart = newScrollView.subviews[0] as PNBarChart
-            updateDetailBar(barChart.chartData.List[barChart.selectedBarData])
+            barChart.selectBar(0)
             
             scrollViewToAnimate = graphView.subviews[1] as UIScrollView
             

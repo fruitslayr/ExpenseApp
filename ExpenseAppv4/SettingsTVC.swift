@@ -105,7 +105,29 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         
     }
 
+    /*
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.row == 0 {
+            roundCorners(.TopLeft | .TopRight , radius: 10, view: cell)
+        }
+        
+        if indexPath.row == 3 && indexPath.section == 0 {
+            roundCorners(.BottomLeft | .BottomRight , radius: 10, view: cell)
+        } else if indexPath.row == 2 && indexPath.section == 1 {
+            roundCorners(.BottomLeft | .BottomRight , radius: 10, view: cell)
+        }
+        
+        cell.layoutMargins = UIEdgeInsetsZero;
+        cell.preservesSuperviewLayoutMargins = false
+    }
     
+    func roundCorners(corners:UIRectCorner, radius: CGFloat, view: UIView) {
+        let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.CGPath
+        view.layer.mask = mask
+    }*/
     
     //mail compose controller that responds when email composition is finished
     func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
@@ -159,8 +181,39 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         toolBar.setItems(toolbarButtonItems, animated: false)
         
         self.weeklyLimit.inputAccessoryView = toolBar
+        
+        var tableBorderLeft: CGFloat = 10
+        var tableBorderRight: CGFloat = 10
+                
     }
+    
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UITableViewHeaderFooterView()
+        
+        //ISSUE WITH THIS CODE
+        
+        headerView
+        
+        let label = UILabel(frame: CGRectMake(30, 30, 260, 10))
+        label.textColor = appColor.orangeColor
+        label.font = UIFont.systemFontOfSize(14)
+        if section == 0 {
+            label.text = "APP SETTINGS"
+        } else if section == 1 {
+            label.text = "ABOUT"
+        }
+        
+        headerView.addSubview(label)
 
+        
+        
+        return headerView
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -168,8 +221,6 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
     }
 
     //TableViewDelegate
-    
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 0 && indexPath.section == 0 {
             weeklyLimit.becomeFirstResponder()

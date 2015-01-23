@@ -35,6 +35,7 @@ class DetailBarTVC: UITableViewController {
         //cell row height
         self.tableView.rowHeight = 60
         
+        self.tableView.tableFooterView = UIView(frame:CGRectZero)
         
         //create date sort on expense array
         /*
@@ -43,8 +44,10 @@ class DetailBarTVC: UITableViewController {
         */
     }
     
+
     override func viewWillAppear(animated: Bool) {
         self.tableView.reloadData()
+        
     }
 
     override func didReceiveMemoryWarning() {

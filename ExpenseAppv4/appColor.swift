@@ -21,13 +21,15 @@ struct appColor {
     //UIColor(red: 255/255.0, green: 152/255.0, blue: 81/255.0, alpha: 1)
     
     
-    static var headerTintColor = UIColor(red: 178/255.0, green: 177/255.0, blue: 184/255.0, alpha: 1)
+    static var headerTintColor = UIColor(red: 49/255.0, green: 49/255.0, blue: 49/255.0, alpha: 1)
     ////////UIColor(red: 255/255.0, green: 64/255.0, blue: 81/255.0, alpha: 1)
     //UIColor(red: 1/255.0, green: 162/255.0, blue: 166/255.0, alpha: 1)
     ////////UIColor(red: 55/255.0, green: 173/255.0, blue: 184/255.0, alpha: 1)
     //UIColor(red: 60/255, green: 149/255, blue: 204/255, alpha: 1)
     //UIColor(red: 53/255.0, green: 168/255.0, blue: 161/255.0, alpha: 1)
     //UIColor(red: 66/255.0, green: 210/255.0, blue: 201/255.0, alpha: 1)
+    
+    static var orangeColor = UIColor(red: 246/255, green: 147/255, blue: 2/255, alpha: 1)
     
     static var limitLabelColor = UIColor(red: 140/255.0, green: 140/255.0, blue: 140/255.0, alpha: 1)
     static var limitLineColor = UIColor(red: 200/255.0, green: 200/255.0, blue: 200/255.0, alpha: 1)

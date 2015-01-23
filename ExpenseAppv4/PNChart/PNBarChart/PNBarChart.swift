@@ -18,6 +18,7 @@ public class PNBarChart: UIView {
     var chartCavanHeight = CGFloat(0)
     var viewType = 0
     var listOfLabels = [UILabel]()
+    var listOfBars = [PNBar]()
     
     public  var xLabels: NSArray = [] {
         
@@ -208,7 +209,9 @@ public class PNBarChart: UIView {
                     label.textColor = labelTextColor
                     label.textAlignment = NSTextAlignment.Center
                     label.text = labelText
+                    label.font = UIFont.boldSystemFontOfSize(12)
                     label.sizeToFit()
+                    label.font = labelFont
                     var labelXPosition:CGFloat  = ( CGFloat(index) *  xLabelWidth + xLabelWidth / 2.0)
                     //var labelXPosition:CGFloat  = ( CGFloat(index) *  xLabelWidth + xLabelWidth / 2.0 + chartMargin)
                     
@@ -236,6 +239,7 @@ public class PNBarChart: UIView {
             var grade: [CGFloat] = []
             var totalValueForTag = 0.0
             var overMaxValue = false
+            var overLimitValue = false
             
             for i in 0..<intArray.count {
                 
@@ -250,6 +254,10 @@ public class PNBarChart: UIView {
             } else {
                 for i in 0..<intArray.count {
                     grade.append(CGFloat(intArray[i]) / yValueMax )//percentage value
+                }
+                
+                if totalValueForTag > Double((yValueMax / 4) * 3) {
+                    overLimitValue = true
                 }
             }
             
@@ -292,7 +300,7 @@ public class PNBarChart: UIView {
                 //////////////Style choices////////////////
                 
                 //bar.alpha = 0.4
-                //listOfLabels[index].textColor = UIColor.redColor()
+                listOfLabels[index].textColor = UIColor.redColor()
                 
                 ///////////////////////////////////////////
                 
@@ -324,15 +332,20 @@ public class PNBarChart: UIView {
                 
             }
             
+            if overLimitValue {
+                listOfLabels[index].textColor = UIColor.redColor()
+            }
+            
             //For Click Index
             bar.tag = index  + 1
-            
-            //bar.animate()
             
             bars.addObject(bar)
             addSubview(bar)
             
+            listOfBars.append(bar)
+
             index += 1
+            
         }
         
     }
@@ -376,59 +389,58 @@ public class PNBarChart: UIView {
         }
         
     }
-
-    /*
-    override public func touchesBegan(touches: NSSet, withEvent event: UIEvent)
-    {
-        touchPoint(touches, withEvent: event)
-        super.touchesBegan(touches, withEvent: event)
-    }
-    
-    
-    //window is limited to 320 x 568 however scrollview is 640x568 hence touch not recognized for other tables
-    func touchPoint(touches: NSSet!, withEvent event: UIEvent!){
-        var touch:UITouch = touches.anyObject() as UITouch
-        println(touch.window)
-        println(touch.view)
-        
-        var touchPoint = touch.locationInView(self)
-        var subview:UIView = hitTest(touchPoint, withEvent: nil)!
-        
-        self.delegate?.userClickedOnBarCharIndex(subview.tag)
-    }*/
-    
-    var prevBarSelect = UIView()
-    var prevLabelSelect = UILabel()
     
     public func touchPoint(location: CGPoint) {
         
         if let subview = hitTest(location, withEvent: nil) {
             
             if subview.tag != 0 {
-                self.delegate?.userClickedOnBar(listOfExpenses[subview.tag - 1])
-                selectedBarData = subview.tag - 1
-
-                if subview == prevBarSelect {
-                    return
-                }
-                
-                UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: nil, animations: {
-                
-                        subview.transform = CGAffineTransformMakeScale(1.05, 1.05)
-                        self.prevBarSelect.transform = CGAffineTransformMakeScale(1, 1)
-                    
-                        self.listOfLabels[subview.tag - 1].frame.origin = CGPointMake(self.listOfLabels[subview.tag - 1].frame.origin.x, self.listOfLabels[subview.tag - 1].frame.origin.y + 5)
-                        self.prevLabelSelect.frame.origin = CGPointMake(self.prevLabelSelect.frame.origin.x, self.prevLabelSelect.frame.origin.y - 5)
-
-                    }, completion: {(bool) in
-                        
-                        self.prevBarSelect = subview
-                        self.prevLabelSelect = self.listOfLabels[subview.tag - 1]
-                })
-                                
+                selectBar(listOfBars.count - (subview.tag))
             }
         }
         
+    }
+    
+    var prevBarSelect: PNBar = PNBar(frame: CGRectMake(0, 0, 0, 0), colors: [])
+    var prevLabelSelect = UILabel()
+    
+    func selectBar(j: Int) {
+        
+        let i = listOfBars.count - j - 1
+        
+        let selectedBar: PNBar = listOfBars[i]
+        
+        self.delegate?.userClickedOnBar(listOfExpenses[i])
+        
+        if selectedBar == prevBarSelect {
+            return
+        }
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: nil, animations: {
+            
+            selectedBar.transform = CGAffineTransformMakeScale(1.05, 1.05)
+            self.prevBarSelect.transform = CGAffineTransformMakeScale(1, 1)
+            
+            self.listOfLabels[i].frame.origin = CGPointMake(self.listOfLabels[i].frame.origin.x, self.listOfLabels[i].frame.origin.y + 4.5)
+            self.prevLabelSelect.frame.origin = CGPointMake(self.prevLabelSelect.frame.origin.x, self.prevLabelSelect.frame.origin.y - 4.5)
+            
+            if self.listOfLabels[i].textColor != UIColor.redColor() {
+                self.listOfLabels[i].textColor = UIColor.blackColor()
+            }
+            self.listOfLabels[i].font = UIFont.boldSystemFontOfSize(11)
+            self.prevLabelSelect.font = UIFont.systemFontOfSize(11)
+            
+            if self.prevLabelSelect.textColor != UIColor.redColor() {
+                self.prevLabelSelect.textColor = self.labelTextColor
+                
+            }
+            
+            
+            }, completion: {(bool) in
+                
+                self.prevBarSelect = selectedBar
+                self.prevLabelSelect = self.listOfLabels[i]
+        })
     }
     
     

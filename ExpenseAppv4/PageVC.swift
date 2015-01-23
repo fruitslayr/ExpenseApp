@@ -21,7 +21,18 @@ class PageVC: UIPageViewController, UIPageViewControllerDataSource {
         if let startingViewController = self.viewControllerAtIndex(0) {
             setViewControllers([startingViewController], direction: .Forward, animated: true, completion: nil)
         }
-                
+        
+        UIApplication.sharedApplication().setStatusBarHidden(true, withAnimation: .Fade)
+        
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .Fade)
+        
     }
 
     override func didReceiveMemoryWarning() {

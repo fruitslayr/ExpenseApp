@@ -18,21 +18,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        self.window?.backgroundColor = UIColor.whiteColor()
+        self.window?.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
         
         // Change navigation bar appearance
         UINavigationBar.appearance().barTintColor = appColor.headerTintColor
         
-        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UINavigationBar.appearance().tintColor = appColor.orangeColor
+        UINavigationBar.appearance()
+        UIBarButtonItem.appearance().tintColor = appColor.orangeColor
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(0, -60),
+            forBarMetrics: .Default)
         
-        if let barFont = UIFont(name: "HelveticaNeue-Medium", size: 20) {
+        if let barFont = UIFont(name: "Avenir-Medium", size: 24) {
             
             UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.whiteColor(), NSFontAttributeName:barFont]
         }
         
+        
         //set image for title bar
-        let titleBarImage = UIImage(named: "titleBar.png")
+        /*let titleBarImage = UIImage(named: "titleBar.png")
         UINavigationBar.appearance().setBackgroundImage(titleBarImage, forBarMetrics: .Default)
+*/
         
         // Change status bar style
         UIApplication.sharedApplication().statusBarStyle = .LightContent

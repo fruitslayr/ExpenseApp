@@ -142,6 +142,33 @@ class EditExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDa
         
     }
     
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UITableViewHeaderFooterView()
+        
+        //ISSUE WITH THIS CODE
+        
+        headerView
+        
+        let label = UILabel(frame: CGRectMake(30, 30, 260, 10))
+        label.textColor = appColor.orangeColor
+        label.font = UIFont.systemFontOfSize(14)
+        if section == 0 {
+            label.text = "ESSENTIALS"
+        } else if section == 1 {
+            label.text = "EXTRAS"
+        }
+        
+        headerView.addSubview(label)
+        
+        
+        
+        return headerView
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
