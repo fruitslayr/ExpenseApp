@@ -27,7 +27,6 @@ class NewExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDat
     let datePicker = UIDatePicker()
     func datePickerChanged(sender: UIDatePicker) {
         selectedDateAndTime = sender.date
-        println("runs")
         dateAndTime.text = printDateAndTime(selectedDateAndTime)
     }
 

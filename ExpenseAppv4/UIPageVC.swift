@@ -26,7 +26,7 @@ class UIPageVC: UIViewController {
         // Do any additional setup after loading the view.
         contentImageView.image = UIImage(named: imageFile)
         pageControl.currentPage = index
-        getStartedButton.layer.borderColor = UIColor(red: 252/255, green: 156/255, blue: 111/255, alpha: 1).CGColor
+        getStartedButton.layer.borderColor = appColor.orangeColor.CGColor
         
         let defaults = NSUserDefaults.standardUserDefaults()
         if defaults.boolForKey("hasViewedWalkthrough"){

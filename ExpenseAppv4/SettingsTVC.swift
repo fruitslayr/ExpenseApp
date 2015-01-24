@@ -49,6 +49,8 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         mailComposerVC.mailComposeDelegate = self
         
         mailComposerVC.navigationBar.tintColor = UIColor.whiteColor()
+        // Change status bar style
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
         
         mailComposerVC.setToRecipients(["fruitslayr@icloud.com"])
         mailComposerVC.setSubject("Support/Feedback")
