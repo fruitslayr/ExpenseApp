@@ -641,7 +641,7 @@
 				INFOPLIST_FILE = ExpenseAppv4Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpenseAppv4.app/ExpenseAppv4";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpenseTrackr.app/ExpenseTrackr";
 			};
 			name = Debug;
 		};
@@ -656,7 +656,7 @@
 				INFOPLIST_FILE = ExpenseAppv4Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpenseAppv4.app/ExpenseAppv4";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ExpenseTrackr.app/ExpenseTrackr";
 			};
 			name = Release;
 		};
