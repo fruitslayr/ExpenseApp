@@ -26,6 +26,8 @@
 		6E7F94AC1A6230880091B581 /* DetailBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F94AB1A6230880091B581 /* DetailBarController.swift */; };
 		6EA661B71A6F0F7200D27BA2 /* UIPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */; };
 		6EA661B91A6F874B00D27BA2 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B81A6F874B00D27BA2 /* PageVC.swift */; };
+		6EAB30FD1A765FF3004E16F1 /* SaveAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAB30FC1A765FF3004E16F1 /* SaveAmount.swift */; };
+		6EAB30FF1A765FFA004E16F1 /* SaveTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EAB30FE1A765FFA004E16F1 /* SaveTag.swift */; };
 		6EB308711A5687860002DFA0 /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */; };
 		6EB308721A5687860002DFA0 /* UIView+AccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308701A5687860002DFA0 /* UIView+AccessViewController.m */; };
 		6EB308781A56B5FC0002DFA0 /* SetLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB308771A56B5FC0002DFA0 /* SetLocationVC.swift */; };
@@ -33,6 +35,15 @@
 		6EC137861A5B433E0046AEFD /* ExpenseApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6EC137841A5B433E0046AEFD /* ExpenseApp.xcdatamodeld */; };
 		6ED05D9E1A6B324400C34D5C /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */; };
 		6ED05DA01A6B33BF00C34D5C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */; };
+		6ED299EA1A76642700A8972C /* AmountSelectRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED299E91A76642700A8972C /* AmountSelectRowController.swift */; };
+		6ED299EC1A76643200A8972C /* TagSelectRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED299EB1A76643200A8972C /* TagSelectRowController.swift */; };
+		6ED7402C1A75E92600EC4496 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ED7402B1A75E92600EC4496 /* Images.xcassets */; };
+		6ED740301A75E92600EC4496 /* ExpenseTrackr WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 6ED7402F1A75E92600EC4496 /* ExpenseTrackr WatchKit App.app */; };
+		6ED740381A75E92600EC4496 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6ED740361A75E92600EC4496 /* Interface.storyboard */; };
+		6ED7403A1A75E92600EC4496 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6ED740391A75E92600EC4496 /* Images.xcassets */; };
+		6ED7403D1A75E92600EC4496 /* ExpenseTrackr WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6ED740251A75E92600EC4496 /* ExpenseTrackr WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6ED740461A765B2100EC4496 /* TagItemRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED740451A765B2100EC4496 /* TagItemRowController.swift */; };
+		6ED740481A765DBC00EC4496 /* MainInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED740471A765DBC00EC4496 /* MainInterfaceController.swift */; };
 		6EDA82391A511F610020D53C /* ExpenseAppv4Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82381A511F610020D53C /* ExpenseAppv4Tests.swift */; };
 		6EDA824C1A511FBD0020D53C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82431A511FBD0020D53C /* AppDelegate.swift */; };
 		6EDA824D1A511FBD0020D53C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDA82441A511FBD0020D53C /* HomeVC.swift */; };
@@ -62,6 +73,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6ED740311A75E92600EC4496 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EDA82151A511F610020D53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ED7402E1A75E92600EC4496;
+			remoteInfo = "ExpenseTrackr WatchKit App";
+		};
+		6ED7403B1A75E92600EC4496 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6EDA82151A511F610020D53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6ED740241A75E92600EC4496;
+			remoteInfo = "ExpenseTrackr WatchKit Extension";
+		};
 		6EDA82331A511F610020D53C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EDA82151A511F610020D53C /* Project object */;
@@ -70,6 +95,20 @@
 			remoteInfo = ExpenseAppv4;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6ED740441A75E92600EC4496 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6ED7403D1A75E92600EC4496 /* ExpenseTrackr WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6E1489F71A526CA40009AD47 /* storedAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storedAnimations.swift; sourceTree = "<group>"; };
@@ -96,6 +135,8 @@
 		6E7F94AB1A6230880091B581 /* DetailBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailBarController.swift; sourceTree = "<group>"; };
 		6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPageVC.swift; sourceTree = "<group>"; };
 		6EA661B81A6F874B00D27BA2 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
+		6EAB30FC1A765FF3004E16F1 /* SaveAmount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveAmount.swift; sourceTree = "<group>"; };
+		6EAB30FE1A765FFA004E16F1 /* SaveTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveTag.swift; sourceTree = "<group>"; };
 		6EB3086D1A5687860002DFA0 /* MSCellAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCellAccessory.h; sourceTree = "<group>"; };
 		6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MSCellAccessory.m; sourceTree = "<group>"; };
 		6EB3086F1A5687860002DFA0 /* UIView+AccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AccessViewController.h"; sourceTree = "<group>"; };
@@ -105,6 +146,17 @@
 		6EC137851A5B433E0046AEFD /* ExpenseApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ExpenseApp.xcdatamodel; sourceTree = "<group>"; };
 		6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
 		6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		6ED299E91A76642700A8972C /* AmountSelectRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmountSelectRowController.swift; sourceTree = "<group>"; };
+		6ED299EB1A76643200A8972C /* TagSelectRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSelectRowController.swift; sourceTree = "<group>"; };
+		6ED740251A75E92600EC4496 /* ExpenseTrackr WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "ExpenseTrackr WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ED740281A75E92600EC4496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6ED7402B1A75E92600EC4496 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6ED7402F1A75E92600EC4496 /* ExpenseTrackr WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ExpenseTrackr WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ED740351A75E92600EC4496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6ED740371A75E92600EC4496 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		6ED740391A75E92600EC4496 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6ED740451A765B2100EC4496 /* TagItemRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagItemRowController.swift; sourceTree = "<group>"; };
+		6ED740471A765DBC00EC4496 /* MainInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceController.swift; sourceTree = "<group>"; };
 		6EDA821D1A511F610020D53C /* ExpenseTrackr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTrackr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EDA82211A511F610020D53C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EDA82321A511F610020D53C /* ExpenseTrackrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExpenseTrackrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +198,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6ED740221A75E92600EC4496 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EDA821A1A511F610020D53C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -231,11 +290,70 @@
 			path = MSCellAccessory;
 			sourceTree = "<group>";
 		};
+		6ED299E71A7663DE00A8972C /* Interface Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6ED740471A765DBC00EC4496 /* MainInterfaceController.swift */,
+				6EAB30FC1A765FF3004E16F1 /* SaveAmount.swift */,
+				6EAB30FE1A765FFA004E16F1 /* SaveTag.swift */,
+			);
+			name = "Interface Controllers";
+			sourceTree = "<group>";
+		};
+		6ED299E81A7663F500A8972C /* Row Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6ED740451A765B2100EC4496 /* TagItemRowController.swift */,
+				6ED299E91A76642700A8972C /* AmountSelectRowController.swift */,
+				6ED299EB1A76643200A8972C /* TagSelectRowController.swift */,
+			);
+			name = "Row Controllers";
+			sourceTree = "<group>";
+		};
+		6ED740261A75E92600EC4496 /* ExpenseTrackr WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6ED299E71A7663DE00A8972C /* Interface Controllers */,
+				6ED299E81A7663F500A8972C /* Row Controllers */,
+				6ED7402B1A75E92600EC4496 /* Images.xcassets */,
+				6ED740271A75E92600EC4496 /* Supporting Files */,
+			);
+			path = "ExpenseTrackr WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		6ED740271A75E92600EC4496 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6ED740281A75E92600EC4496 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6ED740331A75E92600EC4496 /* ExpenseTrackr WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				6ED740361A75E92600EC4496 /* Interface.storyboard */,
+				6ED740391A75E92600EC4496 /* Images.xcassets */,
+				6ED740341A75E92600EC4496 /* Supporting Files */,
+			);
+			path = "ExpenseTrackr WatchKit App";
+			sourceTree = "<group>";
+		};
+		6ED740341A75E92600EC4496 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6ED740351A75E92600EC4496 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		6EDA82141A511F610020D53C = {
 			isa = PBXGroup;
 			children = (
 				6EDA821F1A511F610020D53C /* ExpenseAppv4 */,
 				6EDA82351A511F610020D53C /* ExpenseAppv4Tests */,
+				6ED740261A75E92600EC4496 /* ExpenseTrackr WatchKit Extension */,
+				6ED740331A75E92600EC4496 /* ExpenseTrackr WatchKit App */,
 				6EDA821E1A511F610020D53C /* Products */,
 				6EA5A6391A52EF5700F02069 /* Frameworks */,
 			);
@@ -246,6 +364,8 @@
 			children = (
 				6EDA821D1A511F610020D53C /* ExpenseTrackr.app */,
 				6EDA82321A511F610020D53C /* ExpenseTrackrTests.xctest */,
+				6ED740251A75E92600EC4496 /* ExpenseTrackr WatchKit Extension.appex */,
+				6ED7402F1A75E92600EC4496 /* ExpenseTrackr WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -352,6 +472,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6ED740241A75E92600EC4496 /* ExpenseTrackr WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ED740431A75E92600EC4496 /* Build configuration list for PBXNativeTarget "ExpenseTrackr WatchKit Extension" */;
+			buildPhases = (
+				6ED740211A75E92600EC4496 /* Sources */,
+				6ED740221A75E92600EC4496 /* Frameworks */,
+				6ED740231A75E92600EC4496 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6ED740321A75E92600EC4496 /* PBXTargetDependency */,
+			);
+			name = "ExpenseTrackr WatchKit Extension";
+			productName = "ExpenseTrackr WatchKit Extension";
+			productReference = 6ED740251A75E92600EC4496 /* ExpenseTrackr WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		6ED7402E1A75E92600EC4496 /* ExpenseTrackr WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6ED740421A75E92600EC4496 /* Build configuration list for PBXNativeTarget "ExpenseTrackr WatchKit App" */;
+			buildPhases = (
+				6ED7402D1A75E92600EC4496 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ExpenseTrackr WatchKit App";
+			productName = "ExpenseTrackr WatchKit App";
+			productReference = 6ED7402F1A75E92600EC4496 /* ExpenseTrackr WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		6EDA821C1A511F610020D53C /* ExpenseTrackr */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6EDA823C1A511F610020D53C /* Build configuration list for PBXNativeTarget "ExpenseTrackr" */;
@@ -359,10 +512,12 @@
 				6EDA82191A511F610020D53C /* Sources */,
 				6EDA821A1A511F610020D53C /* Frameworks */,
 				6EDA821B1A511F610020D53C /* Resources */,
+				6ED740441A75E92600EC4496 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6ED7403C1A75E92600EC4496 /* PBXTargetDependency */,
 			);
 			name = ExpenseTrackr;
 			productName = ExpenseAppv4;
@@ -396,6 +551,13 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Francis Young";
 				TargetAttributes = {
+					6ED740241A75E92600EC4496 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = T3H6UV4L8Z;
+					};
+					6ED7402E1A75E92600EC4496 = {
+						CreatedOnToolsVersion = 6.2;
+					};
 					6EDA821C1A511F610020D53C = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = T3H6UV4L8Z;
@@ -426,11 +588,31 @@
 			targets = (
 				6EDA821C1A511F610020D53C /* ExpenseTrackr */,
 				6EDA82311A511F610020D53C /* ExpenseTrackrTests */,
+				6ED740241A75E92600EC4496 /* ExpenseTrackr WatchKit Extension */,
+				6ED7402E1A75E92600EC4496 /* ExpenseTrackr WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6ED740231A75E92600EC4496 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED740301A75E92600EC4496 /* ExpenseTrackr WatchKit App.app in Resources */,
+				6ED7402C1A75E92600EC4496 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6ED7402D1A75E92600EC4496 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6ED740381A75E92600EC4496 /* Interface.storyboard in Resources */,
+				6ED7403A1A75E92600EC4496 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EDA821B1A511F610020D53C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -451,6 +633,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6ED740211A75E92600EC4496 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6EAB30FD1A765FF3004E16F1 /* SaveAmount.swift in Sources */,
+				6ED299EC1A76643200A8972C /* TagSelectRowController.swift in Sources */,
+				6ED740481A765DBC00EC4496 /* MainInterfaceController.swift in Sources */,
+				6ED740461A765B2100EC4496 /* TagItemRowController.swift in Sources */,
+				6ED299EA1A76642700A8972C /* AmountSelectRowController.swift in Sources */,
+				6EAB30FF1A765FFA004E16F1 /* SaveTag.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6EDA82191A511F610020D53C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -512,6 +707,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6ED740321A75E92600EC4496 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ED7402E1A75E92600EC4496 /* ExpenseTrackr WatchKit App */;
+			targetProxy = 6ED740311A75E92600EC4496 /* PBXContainerItemProxy */;
+		};
+		6ED7403C1A75E92600EC4496 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6ED740241A75E92600EC4496 /* ExpenseTrackr WatchKit Extension */;
+			targetProxy = 6ED7403B1A75E92600EC4496 /* PBXContainerItemProxy */;
+		};
 		6EDA82341A511F610020D53C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6EDA821C1A511F610020D53C /* ExpenseTrackr */;
@@ -519,7 +724,82 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		6ED740361A75E92600EC4496 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6ED740371A75E92600EC4496 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		6ED7403E1A75E92600EC4496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "ExpenseTrackr WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		6ED7403F1A75E92600EC4496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "ExpenseTrackr WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		6ED740401A75E92600EC4496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = ExpenseTrackr_WatchKit_Extension;
+				INFOPLIST_FILE = "ExpenseTrackr WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		6ED740411A75E92600EC4496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				COPY_PHASE_STRIP = NO;
+				IBSC_MODULE = ExpenseTrackr_WatchKit_Extension;
+				INFOPLIST_FILE = "ExpenseTrackr WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
 		6EDA823A1A511F610020D53C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -604,6 +884,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ExpenseAppv4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -619,6 +900,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ExpenseAppv4/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -663,6 +945,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6ED740421A75E92600EC4496 /* Build configuration list for PBXNativeTarget "ExpenseTrackr WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED740401A75E92600EC4496 /* Debug */,
+				6ED740411A75E92600EC4496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6ED740431A75E92600EC4496 /* Build configuration list for PBXNativeTarget "ExpenseTrackr WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6ED7403E1A75E92600EC4496 /* Debug */,
+				6ED7403F1A75E92600EC4496 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6EDA82181A511F610020D53C /* Build configuration list for PBXProject "ExpenseTrackr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ExpenseTrackr WatchKit App.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>ExpenseTrackr.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>6ED740241A75E92600EC4496</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6ED7402E1A75E92600EC4496</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6EDA821C1A511F610020D53C</key>
 		<dict>
 			<key>primary</key>
