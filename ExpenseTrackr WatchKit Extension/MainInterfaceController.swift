@@ -20,9 +20,13 @@ class MainInterfaceController: WKInterfaceController {
         }
         
         struct Segues {
-            //static let listSelection = "WatchListsInterfaceControllerListSelectionSegue"
+            static let tagSelection = "showTagPicker"
+            static let amountSelection = "showAmountPicker"
         }
     }
+    
+    //Test variable
+    var anInt = 0
     
     @IBOutlet weak var addButton: WKInterfaceButton!
     @IBOutlet weak var interfaceTable: WKInterfaceTable!
@@ -32,18 +36,23 @@ class MainInterfaceController: WKInterfaceController {
         
         // Configure interface objects here.        
         interfaceTable.setRowTypes([WatchStoryboard.RowTypes.tag, WatchStoryboard.RowTypes.amount])
+        
+        println(context)
     }
     
     override func willActivate() {
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
-        
-        println("Runs")
     }
     
     override func didDeactivate() {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    @IBAction func ButtonAction() {
+        addButton.setColor(UIColor.orangeColor())
+        addButton.setEnabled(true)
     }
 
 }

@@ -42,4 +42,8 @@ class SaveTag: WKInterfaceController {
 
     }
     
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        popController()
+    }
+    
 }

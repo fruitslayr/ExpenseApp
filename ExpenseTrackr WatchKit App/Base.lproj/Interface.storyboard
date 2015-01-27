@@ -23,7 +23,7 @@
                                     </group>
                                     <connections>
                                         <outlet property="tagColor" destination="gXI-vn-MpP" id="FVc-zM-3ZL"/>
-                                        <segue destination="XsN-8B-qeP" kind="push" id="yrO-Si-H0Z"/>
+                                        <segue destination="XsN-8B-qeP" kind="push" identifier="showTagPicker" id="yrO-Si-H0Z"/>
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="AmountSelectionRowType" id="1S2-wG-RWf" customClass="AmountSelectRowController" customModule="ExpenseTrackr_WatchKit_Extension">
@@ -36,13 +36,17 @@
                                     <connections>
                                         <outlet property="amountTextLabel" destination="TPk-RJ-zK4" id="2ab-AF-sRT"/>
                                         <outlet property="currencySymbolLabel" destination="ILv-8s-sen" id="Rzg-dN-Ieq"/>
-                                        <segue destination="895-zH-rig" kind="push" id="ZvW-J8-eSZ"/>
+                                        <segue destination="895-zH-rig" kind="push" identifier="showAmountPicker" id="ZvW-J8-eSZ"/>
                                     </connections>
                                 </tableRow>
                             </items>
                         </table>
+                        <separator alignment="left" alpha="0.0" id="y0G-mA-2OW"/>
                         <button width="101" alignment="center" verticalAlignment="center" title="Add Expense" id="f5W-b6-Hf7">
                             <color key="backgroundColor" red="0.83382435239999997" green="0.82876455859999998" blue="0.8550149937" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="ButtonAction" destination="AgC-eL-Hgc" id="ayB-Ak-A1z"/>
+                            </connections>
                         </button>
                     </items>
                     <connections>
@@ -55,7 +59,7 @@
         <!--Save-->
         <scene sceneID="dSD-iE-U6J">
             <objects>
-                <controller title="Save" id="895-zH-rig" customClass="SaveAmount" customModule="ExpenseTrackr_WatchKit_Extension">
+                <controller identifier="tagPicker" title="Save" id="895-zH-rig" customClass="SaveAmount" customModule="ExpenseTrackr_WatchKit_Extension">
                     <items>
                         <group width="1" alignment="left" id="AhY-B8-e5v">
                             <items>
@@ -151,7 +155,7 @@
         <!--Back-->
         <scene sceneID="tJf-d9-V5N">
             <objects>
-                <controller title="Back" id="XsN-8B-qeP" customClass="SaveTag" customModule="ExpenseTrackr_WatchKit_Extension">
+                <controller identifier="amountPicker" title="Back" id="XsN-8B-qeP" customClass="SaveTag" customModule="ExpenseTrackr_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="qXF-OM-FOa">
                             <items>
@@ -183,4 +187,5 @@
             <point key="canvasLocation" x="569" y="174"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.96470588239999999" green="0.57647058819999997" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
 </document>

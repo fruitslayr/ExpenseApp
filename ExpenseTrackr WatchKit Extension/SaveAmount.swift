@@ -11,6 +11,9 @@ import WatchKit
 
 class SaveAmount: WKInterfaceController {
     
+    //Test variable
+    var anInt = 0
+    
     @IBOutlet weak var amountTextLabel: WKInterfaceLabel!
     var amountText = ""
     @IBOutlet weak var dollarSymbolLabel: WKInterfaceLabel!
@@ -71,7 +74,6 @@ class SaveAmount: WKInterfaceController {
         updateTextlabel("C")
     }
     
-    
     override func awakeWithContext(context: AnyObject?) {
         amountTextLabel.setText("")
         dollarSymbolLabel.setText("%")
@@ -87,7 +89,13 @@ class SaveAmount: WKInterfaceController {
         amountTextLabel.setText(amountText)
     }
     
-    
-    
+    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+        println("runs")
+        if segueIdentifier == "showAmountPicker" {
+            return amountText
+        } else {
+            return nil
+        }
+    }
     
 }
