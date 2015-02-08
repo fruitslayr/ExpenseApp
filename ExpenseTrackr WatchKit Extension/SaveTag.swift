@@ -18,17 +18,16 @@ class SaveTag: WKInterfaceController {
         
     }
     
-    //Test data
-    var colors: [UIColor] = [UIColor(red: 149/255, green: 192/255, blue: 232/255, alpha: 1), UIColor(red: 222/255, green: 192/255, blue: 232/255, alpha: 1)]
-    var labels: [String] = ["Default Tag", "Example: Food & Drink"]
+    var listOfTags: [Tag]!
     
     @IBOutlet weak var interfaceTable: WKInterfaceTable!
     
     override func awakeWithContext(context: AnyObject?) {
+        listOfTags = context as [Tag]
         
-        interfaceTable.setNumberOfRows(colors.count, withRowType: WatchStoryboard.tag)
+        interfaceTable.setNumberOfRows(listOfTags.count, withRowType: WatchStoryboard.tag)
         
-        for i in 0..<colors.count {
+        for i in 0..<listOfTags.count {
             configureRowAtIndex(i)
         }
     }
@@ -37,8 +36,8 @@ class SaveTag: WKInterfaceController {
         
         let item = interfaceTable.rowControllerAtIndex(index) as TagItemRowController
         
-        item.setText(labels[index])
-        item.setColor(colors[index])
+        item.setText(listOfTags[index].text)
+        item.setColor(listOfTags[index].color)
 
     }
     

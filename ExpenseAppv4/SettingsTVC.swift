@@ -28,7 +28,7 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
     @IBOutlet weak var defaultView:UISegmentedControl!
     @IBAction func clickedCurencySymbol() {
         curencySymbol.tintColor = appColor.selectedTintColor
-        defaults.setInteger(self.curencySymbol.selectedSegmentIndex, forKey: "currencySymbol")
+        defaults?.setInteger(self.curencySymbol.selectedSegmentIndex, forKey: "currencySymbol")
         
         var tempString = self.weeklyLimit.text
         tempString.removeAtIndex(weeklyLimit.text.startIndex)
@@ -37,11 +37,11 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
     
     @IBAction func clickedDefaultView() {
         defaultView.tintColor = appColor.selectedTintColor
-        defaults.setInteger(self.defaultView.selectedSegmentIndex, forKey: "defaultView")
+        defaults?.setInteger(self.defaultView.selectedSegmentIndex, forKey: "defaultView")
     }
     
     //opening settings
-    var defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
     
     //Function to send support email
     @IBAction func sendSupportEmailButton() {
@@ -155,17 +155,17 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         }
         
         //loading default settings
-        if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
-            self.curencySymbol.selectedSegmentIndex = defaults.objectForKey("currencySymbol") as Int
+        if let currencySymbolIsNotNil = defaults?.objectForKey("currencySymbol") as? Int {
+            self.curencySymbol.selectedSegmentIndex = defaults?.objectForKey("currencySymbol") as Int
         }
         
-        if let weeklyLimitIsNotNil = defaults.objectForKey("weeklyLimit") as? String {
-            let tempString = defaults.objectForKey("weeklyLimit") as String
+        if let weeklyLimitIsNotNil = defaults?.objectForKey("weeklyLimit") as? String {
+            let tempString = defaults?.objectForKey("weeklyLimit") as String
             self.weeklyLimit.text = getCurrencySymbol() + tempString
         }
         
-        if let defaultViewIsNotNil = defaults.objectForKey("defaultView") as? Int {
-            self.defaultView.selectedSegmentIndex = defaults.objectForKey("defaultView") as Int
+        if let defaultViewIsNotNil = defaults?.objectForKey("defaultView") as? Int {
+            self.defaultView.selectedSegmentIndex = defaults?.objectForKey("defaultView") as Int
         }
         
         self.weeklyLimit.delegate = self
@@ -296,15 +296,15 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         //Saving changes
         var tempString = self.weeklyLimit.text
         tempString.removeAtIndex(weeklyLimit.text.startIndex)
-        defaults.setObject(tempString, forKey: "weeklyLimit")
+        defaults?.setObject(tempString, forKey: "weeklyLimit")
     }
 
     func weeklyLimitCancel() {
         var output = ""
         
         output += getCurrencySymbol()
-        if let weeklyLimitIsNotNil = defaults.objectForKey("weeklyLimit") as? String {
-            let limit = defaults.objectForKey("weeklyLimit") as String
+        if let weeklyLimitIsNotNil = defaults?.objectForKey("weeklyLimit") as? String {
+            let limit = defaults?.objectForKey("weeklyLimit") as String
             output += String(limit)
         }
         
@@ -318,8 +318,7 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
     func getCurrencySymbol() -> String {
         var output = ""
         
-        if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
-            let symbol = defaults.objectForKey("currencySymbol") as Int
+        if let symbol = defaults?.objectForKey("currencySymbol") as? Int {
             switch symbol {
             case 0:
                 output += "$"

@@ -8,6 +8,7 @@
 
 import Foundation
 import WatchKit
+import CoreData
 
 class MainInterfaceController: WKInterfaceController {
 
@@ -24,6 +25,11 @@ class MainInterfaceController: WKInterfaceController {
             static let amountSelection = "showAmountPicker"
         }
     }
+   
+    //Shared user defaults
+    var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
+    //Shared settings
+    var currencySymbol = ""
     
     //Test variable
     var anInt = 0
@@ -36,8 +42,10 @@ class MainInterfaceController: WKInterfaceController {
         
         // Configure interface objects here.        
         interfaceTable.setRowTypes([WatchStoryboard.RowTypes.tag, WatchStoryboard.RowTypes.amount])
+        currencySymbol = getCurrencySymbol()
         
-        println(context)
+        let amountRow = interfaceTable.rowControllerAtIndex(1) as AmountSelectRowController
+        amountRow.setSymbol(currencySymbol)
     }
     
     override func willActivate() {
@@ -53,6 +61,34 @@ class MainInterfaceController: WKInterfaceController {
     @IBAction func ButtonAction() {
         addButton.setColor(UIColor.orangeColor())
         addButton.setEnabled(true)
+    }
+    
+    //return currencySymbol as String
+    func getCurrencySymbol() -> String {
+        var output = ""
+        if let symbol = defaults?.objectForKey("currencySymbol") as? Int {
+            switch symbol {
+            case 0:
+                output += "$"
+            case 1:
+                output += "£"
+            case 2:
+                output += "€"
+            default:
+                output = ""
+            }
+        }
+        return output
+    }
+    
+    override func contextForSegueWithIdentifier(segueIdentifier: String, inTable table: WKInterfaceTable, rowIndex: Int) -> AnyObject? {
+        if rowIndex == 1 {
+            return currencySymbol
+        } else if rowIndex == 0 {
+            return 1
+        } else {
+            return nil
+        }
     }
 
 }

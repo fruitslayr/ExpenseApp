@@ -377,8 +377,8 @@
 		6EDA821F1A511F610020D53C /* ExpenseAppv4 */ = {
 			isa = PBXGroup;
 			children = (
-				6EDA82431A511FBD0020D53C /* AppDelegate.swift */,
 				6EC137821A5B42240046AEFD /* CoreDataStack.swift */,
+				6EDA82431A511FBD0020D53C /* AppDelegate.swift */,
 				6E1489FB1A527F520009AD47 /* Controllers */,
 				6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */,
 				6E66DB7F1A73C21B00C2DDA8 /* Images.xcassets */,

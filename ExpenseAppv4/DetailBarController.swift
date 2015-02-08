@@ -20,7 +20,7 @@ class DetailBarController {
     
     let expenseList: [[Expense]]
     let coreDataStack: CoreDataStack
-    let defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
     
     init(expenseList: [[Expense]], coreDataStack:CoreDataStack) {
         self.expenseList = expenseList
@@ -165,8 +165,7 @@ class DetailBarController {
     func getCurrencySymbol() -> String {
         var output = ""
         
-        if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
-            let symbol = defaults.objectForKey("currencySymbol") as Int
+        if let symbol = defaults?.objectForKey("currencySymbol") as? Int {
             switch symbol {
             case 0:
                 output += "$"

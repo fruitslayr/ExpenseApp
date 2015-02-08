@@ -32,7 +32,7 @@ class NewExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDat
 
     
     //opening settings + coredatastack
-    var defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
     var coreDataStack: CoreDataStack!
     var listOfTags: [Tag]!
     
@@ -377,8 +377,7 @@ class NewExpenseTVC: UITableViewController, UITextFieldDelegate, UIPickerViewDat
     func getCurrencySymbol() -> String {
         var output = ""
         
-        if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
-            let symbol = defaults.objectForKey("currencySymbol") as Int
+        if let symbol = defaults?.objectForKey("currencySymbol") as? Int {
             switch symbol {
             case 0:
                 output += "$"

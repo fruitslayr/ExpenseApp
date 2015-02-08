@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        self.window?.backgroundColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1)
+        self.window?.backgroundColor = appColor.headerTintColor
         
         // Change navigation bar appearance
         UINavigationBar.appearance().barTintColor = appColor.headerTintColor
@@ -59,19 +59,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func createDefaultSettings() {
         //opening settings
-        var defaults = NSUserDefaults.standardUserDefaults()
+        var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
         
         //loading default settings
-        if defaults.objectForKey("currencySymbol") == nil {
-            defaults.setInteger(0, forKey: "currencySymbol")
+        if defaults?.objectForKey("currencySymbol") == nil {
+            defaults?.setInteger(0, forKey: "currencySymbol")
+            println("setInteger")
         }
         
-        if defaults.objectForKey("weeklyLimit") == nil {
-            defaults.setObject("200", forKey: "weeklyLimit")
+        if defaults?.objectForKey("weeklyLimit") == nil {
+            defaults?.setObject("200", forKey: "weeklyLimit")
         }
         
-        if defaults.objectForKey("defaultView") == nil {
-            defaults.setInteger(0, forKey: "defaultView")
+        if defaults?.objectForKey("defaultView") == nil {
+            defaults?.setInteger(0, forKey: "defaultView")
         }
         
     }

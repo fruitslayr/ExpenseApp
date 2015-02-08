@@ -11,28 +11,12 @@ import WatchKit
 
 class SaveAmount: WKInterfaceController {
     
-    //Test variable
-    var anInt = 0
+    //Shared user defaults
+    var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
     
     @IBOutlet weak var amountTextLabel: WKInterfaceLabel!
     var amountText = ""
     @IBOutlet weak var dollarSymbolLabel: WKInterfaceLabel!
-    
-//    @IBOutlet weak var button1: WKInterfaceButton!
-//    @IBOutlet weak var button2: WKInterfaceButton!
-//    @IBOutlet weak var button3: WKInterfaceButton!
-//    
-//    @IBOutlet weak var button4: WKInterfaceButton!
-//    @IBOutlet weak var button5: WKInterfaceButton!
-//    @IBOutlet weak var button6: WKInterfaceButton!
-//    
-//    @IBOutlet weak var button7: WKInterfaceButton!
-//    @IBOutlet weak var button8: WKInterfaceButton!
-//    @IBOutlet weak var button9: WKInterfaceButton!
-//    
-//    @IBOutlet weak var buttonDecimal: WKInterfaceButton!
-//    @IBOutlet weak var button0: WKInterfaceButton!
-//    @IBOutlet weak var buttonClear: WKInterfaceButton!
     
     @IBAction func button1() {
         updateTextlabel("1")
@@ -76,7 +60,10 @@ class SaveAmount: WKInterfaceController {
     
     override func awakeWithContext(context: AnyObject?) {
         amountTextLabel.setText("")
-        dollarSymbolLabel.setText("%")
+        
+        //defaults?.objectForKey("amountTextLabel") as? Int {
+        
+        dollarSymbolLabel.setText((context as String))
     }
     
     func updateTextlabel(str:String) {
@@ -88,14 +75,4 @@ class SaveAmount: WKInterfaceController {
         
         amountTextLabel.setText(amountText)
     }
-    
-    override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-        println("runs")
-        if segueIdentifier == "showAmountPicker" {
-            return amountText
-        } else {
-            return nil
-        }
-    }
-    
 }

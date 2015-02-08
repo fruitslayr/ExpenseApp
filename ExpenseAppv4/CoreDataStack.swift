@@ -58,6 +58,16 @@ class CoreDataStack {
     
   }
   
+    func applicationDocumentsDirectory() -> NSURL {
+        
+        let fileManager = NSFileManager.defaultManager()
+        
+        let groupContainerURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.edu.self.ExpenseTrackr.Documents")
+
+        return groupContainerURL!
+    }
+   
+    /*
   func applicationDocumentsDirectory() -> NSURL {
     
     let fileManager = NSFileManager.defaultManager()
@@ -66,6 +76,6 @@ class CoreDataStack {
       inDomains: .UserDomainMask) as Array<NSURL>
     
     return urls[0]
-  }
+  }*/
   
 }

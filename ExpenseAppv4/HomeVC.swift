@@ -21,7 +21,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     var expenseListForSegue: [[Expense]]!
     
     //opening settings
-    var defaults = NSUserDefaults.standardUserDefaults()
+    var defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
     
     //User interactions
     var singleTap: UITapGestureRecognizer!
@@ -44,7 +44,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let hasViewedWalkthrough = defaults.boolForKey("hasViewedWalkthrough")
+        let hasViewedWalkthrough = defaults?.boolForKey("hasViewedWalkthrough")
         
         if hasViewedWalkthrough == false {
             if let pageViewController = storyboard?.instantiateViewControllerWithIdentifier("PageVC") as? PageVC {
@@ -320,8 +320,8 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     func genLimitAmount(viewType: Int) -> Double {
         var limitPerDay: Double = 0
         
-        if let weeklyLimitIsNotNil = defaults.objectForKey("weeklyLimit") as? String {
-            limitPerDay = (defaults.objectForKey("weeklyLimit") as NSString).doubleValue / 7
+        if let weeklyLimitIsNotNil = defaults?.objectForKey("weeklyLimit") as? String {
+            limitPerDay = (defaults?.objectForKey("weeklyLimit") as NSString).doubleValue / 7
         }
         
         switch viewType {
@@ -525,8 +525,8 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
 
     
     func graphViewToLoad() -> Int {
-        if let defaultViewIsNotNil = defaults.objectForKey("defaultView") as? Int {
-            return defaults.objectForKey("defaultView") as Int
+        if let defaultViewIsNotNil = defaults?.objectForKey("defaultView") as? Int {
+            return defaults?.objectForKey("defaultView") as Int
         } else {
             return 0
         }
@@ -601,8 +601,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     func getCurrencySymbol() -> String {
         var output = ""
         
-        if let currencySymbolIsNotNil = defaults.objectForKey("currencySymbol") as? Int {
-            let symbol = defaults.objectForKey("currencySymbol") as Int
+        if let symbol = defaults?.objectForKey("currencySymbol") as? Int {
             switch symbol {
             case 0:
                 output += "$"

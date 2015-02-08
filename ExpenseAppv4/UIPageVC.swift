@@ -28,8 +28,9 @@ class UIPageVC: UIViewController {
         pageControl.currentPage = index
         getStartedButton.layer.borderColor = appColor.orangeColor.CGColor
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if defaults.boolForKey("hasViewedWalkthrough"){
+        let defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
+        println(defaults?.boolForKey("hasViewedWalkthrough"))
+        if (defaults?.boolForKey("hasViewedWalkthrough") != false) {
             getStartedButton.setTitle("Close", forState: .Normal)
         } else {
             getStartedButton.setTitle("Get Started!", forState: .Normal)
@@ -56,8 +57,8 @@ class UIPageVC: UIViewController {
     @IBAction func dismiss() {
         self.dismissViewControllerAnimated(true, completion: nil)
         
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setBool(true, forKey: "hasViewedWalkthrough")
+        let defaults = NSUserDefaults(suiteName: "group.edu.self.ExpenseTrackr.Documents")
+        defaults?.setBool(true, forKey: "hasViewedWalkthrough")
     }
 
 }
