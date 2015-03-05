@@ -24,6 +24,8 @@
 		6E6863AE1A52266800317A19 /* PickerTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6863AD1A52266800317A19 /* PickerTF.swift */; };
 		6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */; };
 		6E7F94AC1A6230880091B581 /* DetailBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7F94AB1A6230880091B581 /* DetailBarController.swift */; };
+		6E8D179F1AA2887600706848 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D179D1AA2887600706848 /* CollectionViewController.swift */; };
+		6E8D17A01AA2887600706848 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8D179E1AA2887600706848 /* CollectionViewCell.swift */; };
 		6EA661B71A6F0F7200D27BA2 /* UIPageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */; };
 		6EA661B91A6F874B00D27BA2 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA661B81A6F874B00D27BA2 /* PageVC.swift */; };
 		6EB308711A5687860002DFA0 /* MSCellAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EB3086E1A5687860002DFA0 /* MSCellAccessory.m */; };
@@ -94,6 +96,8 @@
 		6E6863AD1A52266800317A19 /* PickerTF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerTF.swift; sourceTree = "<group>"; };
 		6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customExpenseTableViewCell.swift; sourceTree = "<group>"; };
 		6E7F94AB1A6230880091B581 /* DetailBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailBarController.swift; sourceTree = "<group>"; };
+		6E8D179D1AA2887600706848 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
+		6E8D179E1AA2887600706848 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		6EA661B61A6F0F7200D27BA2 /* UIPageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPageVC.swift; sourceTree = "<group>"; };
 		6EA661B81A6F874B00D27BA2 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
 		6EB3086D1A5687860002DFA0 /* MSCellAccessory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MSCellAccessory.h; sourceTree = "<group>"; };
@@ -208,6 +212,15 @@
 			path = FBShimmering;
 			sourceTree = "<group>";
 		};
+		6E8D17A11AA2887E00706848 /* Collection View Graph */ = {
+			isa = PBXGroup;
+			children = (
+				6E8D179D1AA2887600706848 /* CollectionViewController.swift */,
+				6E8D179E1AA2887600706848 /* CollectionViewCell.swift */,
+			);
+			name = "Collection View Graph";
+			sourceTree = "<group>";
+		};
 		6EA5A6391A52EF5700F02069 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +272,7 @@
 				6ED05D9F1A6B33BF00C34D5C /* Main.storyboard */,
 				6E66DB7F1A73C21B00C2DDA8 /* Images.xcassets */,
 				6EDA82471A511FBD0020D53C /* LaunchScreen.xib */,
+				6E8D17A11AA2887E00706848 /* Collection View Graph */,
 				6ED05D9D1A6B324400C34D5C /* customTableViewCell.swift */,
 				6E7215CC1A6292350010B110 /* customExpenseTableViewCell.swift */,
 				6E263CF51A5C9438006D541A /* ChartDataController.swift */,
@@ -475,6 +489,7 @@
 				6E437A791A5BAD8200B1D01D /* Coordinate.swift in Sources */,
 				6E2B32441A629A260024EC09 /* EditExpenseTVC.swift in Sources */,
 				6E7215CD1A6292350010B110 /* customExpenseTableViewCell.swift in Sources */,
+				6E8D17A01AA2887600706848 /* CollectionViewCell.swift in Sources */,
 				6E437A7B1A5BAD8200B1D01D /* Tag.swift in Sources */,
 				6EDA82541A511FBD0020D53C /* appColor.swift in Sources */,
 				6EDA824C1A511FBD0020D53C /* AppDelegate.swift in Sources */,
@@ -487,6 +502,7 @@
 				6EDA82621A511FF00020D53C /* PNChartConfig.swift in Sources */,
 				6EA661B91A6F874B00D27BA2 /* PageVC.swift in Sources */,
 				6EDA82671A511FF00020D53C /* PNValue.swift in Sources */,
+				6E8D179F1AA2887600706848 /* CollectionViewController.swift in Sources */,
 				6EDA82601A511FF00020D53C /* PNBar.swift in Sources */,
 				6E66DB881A73C25E00C2DDA8 /* FBShimmeringLayer.m in Sources */,
 				6EFBD7671A52E3F7007E9977 /* HRColorCursor.m in Sources */,

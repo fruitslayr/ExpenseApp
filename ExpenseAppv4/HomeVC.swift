@@ -466,7 +466,6 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     
     @IBAction func zoomIn() {
         
-        
         let scrollViewToHide = graphView.subviews[0] as UIScrollView
         var scrollViewToAnimate = UIScrollView()
         

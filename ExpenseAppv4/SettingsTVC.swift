@@ -415,7 +415,7 @@ class SettingsTVC: UITableViewController, UITextFieldDelegate, MFMailComposeView
         fetchRequest.sortDescriptors = [expenseSort]
         
         var results = coreDataStack.context.executeFetchRequest(fetchRequest, error: &error) as [Expense]
-        
+
         return results
     }
     
