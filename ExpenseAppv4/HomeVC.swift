@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 import CoreData
 
-class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDelegate {
+class HomeVC: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var graphView: UIView!
     @IBOutlet weak var detailScrollView: UIScrollView!
@@ -29,17 +29,14 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     var singleTapForDetailBar: UITapGestureRecognizer!
     
     //variables to control zoom in and out feature
-    var listOfGraphScrollViews: [UIScrollView?] = [nil,nil,nil]
-    var currentScrollView: Int!
+    var listOfGraphViewControllers: [CollectionViewController?] = [nil,nil,nil]
+    var currentViewController: Int!
     
     var canPinch = true
     
     //Limit details
     var limitLine = UIImageView()
     var limitLabel = UILabel()
-    
-    //Indictor for graph loading
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,27 +51,14 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         
         self.automaticallyAdjustsScrollViewInsets = false
         
-        //initialize user interactions:
-        singleTap = UITapGestureRecognizer(target: self, action: "handleTap:")
         pinch = UIPinchGestureRecognizer(target: self, action: "handlePinch:")
-        singleTapForDetailBar = UITapGestureRecognizer(target: self, action: "handleTapForDetailBar:")
-        
-        //UIActivityIndicator to show when graphView is loading
-        spinner.center = CGPointMake(graphView.frame.size.width / 2, graphView.frame.size.height / 2)
-        spinner.color = UIColor.lightGrayColor()
         
         //create limit line
         limitLine = drawLimit()
-        
-        //Set navigation bar title font
-//        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "AmericanTypewriter", size: 24)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
-
 
     }
 
     override func viewWillAppear(animated: Bool) {
-        
-        listOfGraphScrollViews = [nil,nil,nil]
         
         if let views = graphView?.subviews {
             for view in views {
@@ -95,18 +79,14 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         }
         
         //remove user interactions:
-        graphView.removeGestureRecognizer(singleTap)
         graphView.removeGestureRecognizer(pinch)
-        detailScrollView.removeGestureRecognizer(singleTapForDetailBar)
         
         let instructions: Bool? = safetyCheckForExpense()
         
         if instructions == true {
             
             //Add user interactions:
-            graphView.addGestureRecognizer(singleTap)
             graphView.addGestureRecognizer(pinch)
-            detailScrollView.addGestureRecognizer(singleTapForDetailBar)
             
             chartDataController = ChartDataController(coreDataStack: coreDataStack)
             var graphDataToDisplay: (List: [[[Expense]]], labels: [String], tags: [Tag])!
@@ -114,24 +94,25 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             switch graphViewToLoad() {
             case 0:
                 graphDataToDisplay = chartDataController.daily()
-                currentScrollView = 0
+                currentViewController = 0
             case 1:
                 graphDataToDisplay = chartDataController.weekly()
-                currentScrollView = 1
+                currentViewController = 1
             case 2:
                 graphDataToDisplay = chartDataController.monthly()
-                currentScrollView = 2
+                currentViewController = 2
             default:
                 graphDataToDisplay = chartDataController.daily()
-                currentScrollView = 0
+                currentViewController = 0
             }
 
-            let scrollView = newSizedScrollView(createBarGraph(graphDataToDisplay, viewType: currentScrollView))
-            listOfGraphScrollViews[currentScrollView] = scrollView
-            graphView.addSubview(listOfGraphScrollViews[currentScrollView]!)
+            listOfGraphViewControllers[currentViewController] = createBarGraph(graphDataToDisplay, viewType: currentViewController)
+            graphView.addSubview(listOfGraphViewControllers[currentViewController]!.collectionView!)
             
+            /*
             let barChart = scrollView.subviews[0] as PNBarChart
             barChart.selectBar(0)
+            */
             
             addLimitDetails()
             
@@ -197,6 +178,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     }
     
 
+    /*
     func handleTap(gestureRecognizer:UITapGestureRecognizer) {
         
         let scrollView = listOfGraphScrollViews[currentScrollView]! as UIScrollView
@@ -212,23 +194,20 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         if touchPoint.x > detailScrollView.contentSize.width - 95 {
             performSegueWithIdentifier("showExpenses", sender: detailScrollView)
         }
-    } 
+    }
+    */
 
 
-    func createBarGraph(data: (List: [[[Expense]]], labels: [String], tags: [Tag]), viewType: Int) -> PNBarChart {
+    func createBarGraph(data: (List: [[[Expense]]], labels: [String], tags: [Tag]), viewType: Int) -> CollectionViewController {
         
-        let currentBarChart = PNBarChart(frame: CGRectMake(0, 0, 640, 354))
+        let collectionViewLayout = UICollectionViewLayout()
+        collectionViewLayout
+        
+        let currentBarChart = CollectionViewController(collectionViewLayout: this)
         
         currentBarChart.viewType = viewType
-        currentBarChart.backgroundColor = UIColor.clearColor()
-        currentBarChart.labelMarginTop = 5.0
         
-        //Set up size of views and controllers
-        currentBarChart.frame = CGRectMake(0, 0, 46 * CGFloat(data.labels.count), 354)
-        
-        //change size according to requirements
-
-        currentBarChart.xLabels = data.labels.reverse()
+        currentBarChart.listOfLabels = data.labels.reverse()
         currentBarChart.listOfExpenses = data.List.reverse()
         
         currentBarChart.strokeColors = []
@@ -238,8 +217,6 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             currentBarChart.strokeColors.append(tag.color)
         }
         
-        currentBarChart.strokeChart()
-        currentBarChart.delegate = self
         currentBarChart.chartData = data
         
         return currentBarChart
@@ -303,7 +280,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         
         //let someDoubleFormat = ".2"
         //myText.text = "\(getCurrencySymbol()) \(genLimitAmount(currentScrollView).format(someDoubleFormat))"
-        myText.text = "\(getCurrencySymbol()) \(Int(round(genLimitAmount(currentScrollView))))"
+        myText.text = "\(getCurrencySymbol()) \(Int(round(genLimitAmount(currentViewController))))"
         myText.textColor = appColor.limitLabelColor
         myText.sizeToFit()
         myText.alpha = 0
@@ -337,44 +314,7 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
         }
     }
     
-    //generates newscrollView for a given PNBarChart
-    func newSizedScrollView(view: UIView) -> UIScrollView {
-        
-        let newScrollView = UIScrollView(frame: CGRectMake(0, 0, 320, 354))
-        let width = view.frame.width
-        
-        if width > 320 {
-            newScrollView.contentSize = CGSizeMake(width, 354)
-            newScrollView.contentOffset = CGPointMake(width-320, 0) //Results in the offset to to allow scrolling from right to left
-        } else {
-            newScrollView.contentSize = CGSizeMake(320, 354)
-            view.frame = CGRectMake(320 - view.frame.width, 0, view.frame.width, 354)
-            newScrollView.contentOffset = CGPointMake(0, 0) //Results in the offset to to allow scrolling from right to left
-        }
-        
-        newScrollView.clipsToBounds = true
-        
-        //remove scrollview indicators
-        for indicatorView in newScrollView.subviews {
-            indicatorView.removeFromSuperview()
-        }
-        
-        newScrollView.addSubview(view)
-        
-        return newScrollView
-    }
-    
-    //PNBarChart delegate methods
-    func userClickedOnLineKeyPoint(point: CGPoint, lineIndex: Int, keyPointIndex: Int){}
-    
-    func userClickedOnLinePoint(point: CGPoint, lineIndex: Int){}
-    
-    func userClickedOnBar(expenseList: [[Expense]])
-    {
-        updateDetailBar(expenseList)
-    }
-    
-    
+    /*
     func updateDetailBar(expenseList: [[Expense]]) {
         let detailBarController = DetailBarController(expenseList: expenseList, coreDataStack: coreDataStack)
         expenseListForSegue = expenseList
@@ -404,61 +344,63 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
             contentRect = CGRectUnion(contentRect, view.frame)
         }
         self.detailScrollView.contentSize = contentRect.size
-    }
+    }*/
     
     @IBAction func zoomOut() {
         
-        let scrollViewToHide = graphView.subviews[0] as UIScrollView
+        let viewToHide = graphView.subviews[0] as UICollectionView
         
-        if currentScrollView + 1 > 2 {
+        if currentViewController + 1 > 2 {
             self.canPinch = true
             return
         }
         
         removeLimitDetails()
         
-        if let scrollViewToAdd = listOfGraphScrollViews[currentScrollView + 1] {
-            scrollViewToAdd.alpha = 0
-            scrollViewToAdd.transform = CGAffineTransformMakeScale(1.3, 1.3)
-            graphView.insertSubview(scrollViewToAdd, aboveSubview: scrollViewToHide)
+        if let viewToAdd = listOfGraphViewControllers[currentViewController + 1]?.collectionView {
+            viewToAdd.alpha = 0
+            viewToAdd.transform = CGAffineTransformMakeScale(1.3, 1.3)
+            graphView.insertSubview(viewToAdd, aboveSubview: viewToHide)
             
+            /*
             let barChart = scrollViewToAdd.subviews[0] as PNBarChart
             barChart.selectBar(0)
+            */
         } else {
             
-            var graphToDisplay: PNBarChart!
+            var graphController: CollectionViewController!
             
-            if currentScrollView + 1 == 1 {
-                graphToDisplay = createBarGraph(chartDataController.weekly(), viewType: currentScrollView + 1)
-            } else if currentScrollView + 1 == 2 {
-                graphToDisplay = createBarGraph(chartDataController.monthly(), viewType: currentScrollView + 1)
+            if currentViewController + 1 == 1 {
+                graphController = createBarGraph(chartDataController.weekly(), viewType: currentViewController + 1)
+            } else if currentViewController + 1 == 2 {
+                graphController = createBarGraph(chartDataController.monthly(), viewType: currentViewController + 1)
             }
             
-            let newScrollView = newSizedScrollView(graphToDisplay)
-            newScrollView.alpha = 0
-            newScrollView.transform = CGAffineTransformMakeScale(1.3, 1.3)
-            graphView.insertSubview(newScrollView, aboveSubview: scrollViewToHide)
+            let graphToDisplay = graphController.collectionView!
+            graphToDisplay.alpha = 0
+            graphToDisplay.transform = CGAffineTransformMakeScale(1.3, 1.3)
+            graphView.insertSubview(graphToDisplay, aboveSubview: viewToHide)
             
-            let barChart = newScrollView.subviews[0] as PNBarChart
-            barChart.selectBar(0)
+            //let barChart = newScrollView.subviews[0] as PNBarChart
+            //barChart.selectBar(0)
             
         }
         
-        let scrollViewToAnimate = graphView.subviews[1] as UIScrollView
+        let viewToAnimate = graphView.subviews[1] as UICollectionView
         
         UIView.animateWithDuration(0.5, delay: 0.0, options: nil,  animations: {
-            scrollViewToAnimate.transform = CGAffineTransformMakeScale(1, 1)
-            scrollViewToAnimate.alpha = 1
-            scrollViewToHide.alpha = 0
+            viewToAnimate.transform = CGAffineTransformMakeScale(1, 1)
+            viewToAnimate.alpha = 1
+            viewToAnimate.alpha = 0
             }, completion: {(bool) in
-                self.listOfGraphScrollViews[self.currentScrollView] = scrollViewToHide
-                scrollViewToHide.removeFromSuperview()
-                self.listOfGraphScrollViews[self.currentScrollView + 1] = scrollViewToAnimate
-                self.currentScrollView = self.currentScrollView + 1
-
+                self.listOfGraphViewControllers[self.currentViewController] = viewToHide.delegate! as? CollectionViewController
+                viewToHide.removeFromSuperview()
+                self.listOfGraphViewControllers[self.currentViewController + 1] = viewToAnimate.delegate! as? CollectionViewController
+                self.currentViewController = self.currentViewController + 1
+                
                 self.canPinch = true
                 self.addLimitDetails()
-
+                
         })
         
     }
@@ -466,55 +408,55 @@ class HomeVC: UIViewController, PNChartDelegate, MFMailComposeViewControllerDele
     
     @IBAction func zoomIn() {
         
-        let scrollViewToHide = graphView.subviews[0] as UIScrollView
-        var scrollViewToAnimate = UIScrollView()
+        let viewToHide = graphView.subviews[0] as UICollectionView
+        var viewToAnimate: UICollectionView!
         
-        if currentScrollView - 1 < 0 {
+        if currentViewController - 1 < 0 {
             self.canPinch = true
             return
         }
         
         removeLimitDetails()
         
-        if let scrollViewToAdd = listOfGraphScrollViews[currentScrollView - 1] {
-            scrollViewToAdd.alpha = 0
-            graphView.insertSubview(scrollViewToAdd, belowSubview: scrollViewToHide)
+        if let viewToAdd = listOfGraphViewControllers[currentViewController - 1]!.collectionView? {
+            viewToAdd.alpha = 0
+            graphView.insertSubview(viewToAdd, belowSubview: viewToHide)
             
-            let barChart = scrollViewToAdd.subviews[0] as PNBarChart
-            barChart.selectBar(0)
+            /*let barChart = viewToAdd.subviews[0] as PNBarChart
+            barChart.selectBar(0)*/
             
-            scrollViewToAnimate = graphView.subviews[0] as UIScrollView
+            viewToAnimate = graphView.subviews[0] as UICollectionView
         } else {
             
-            var graphToDisplay: PNBarChart!
+            var graphController: CollectionViewController!
             
-            if currentScrollView - 1 == 1 {
-                graphToDisplay = createBarGraph(chartDataController.weekly(), viewType: currentScrollView - 1)
-            } else if currentScrollView - 1 == 0 {
-                graphToDisplay = createBarGraph(chartDataController.daily(), viewType: currentScrollView - 1)
+            if currentViewController - 1 == 1 {
+                graphController = createBarGraph(chartDataController.weekly(), viewType: currentViewController - 1)
+            } else if currentViewController - 1 == 0 {
+                graphController = createBarGraph(chartDataController.daily(), viewType: currentViewController - 1)
             }
             
-            let newScrollView = newSizedScrollView(graphToDisplay)
-            newScrollView.alpha = 0
-            graphView.insertSubview(newScrollView, aboveSubview: scrollViewToHide)
+            let graphToDisplay = graphController.collectionView!
+            graphToDisplay.alpha = 0
+            graphView.insertSubview(graphToDisplay, aboveSubview: viewToHide)
             
-            let barChart = newScrollView.subviews[0] as PNBarChart
-            barChart.selectBar(0)
+            /*let barChart = newScrollView.subviews[0] as PNBarChart
+            barChart.selectBar(0)*/
             
-            scrollViewToAnimate = graphView.subviews[1] as UIScrollView
+            viewToAnimate = graphView.subviews[1] as UICollectionView
             
         }
         
         
         UIView.animateWithDuration(0.5, delay: 0.0, options: nil, animations: {
-            scrollViewToHide.transform = CGAffineTransformMakeScale(1.3, 1.3)
-            scrollViewToHide.alpha = 0.0
-            scrollViewToAnimate.alpha = 1.0
+            viewToHide.transform = CGAffineTransformMakeScale(1.3, 1.3)
+            viewToHide.alpha = 0.0
+            viewToAnimate.alpha = 1.0
             }, completion: {(bool) in
-                self.listOfGraphScrollViews[self.currentScrollView] = scrollViewToHide
-                scrollViewToHide.removeFromSuperview()
-                self.listOfGraphScrollViews[self.currentScrollView - 1] = scrollViewToAnimate
-                self.currentScrollView = self.currentScrollView - 1
+                self.listOfGraphViewControllers[self.currentViewController] = viewToHide.delegate! as? CollectionViewController
+                viewToHide.removeFromSuperview()
+                self.listOfGraphViewControllers[self.currentViewController - 1] = viewToAnimate.delegate! as? CollectionViewController
+                self.currentViewController = self.currentViewController - 1
 
                 self.canPinch = true
                 self.addLimitDetails()

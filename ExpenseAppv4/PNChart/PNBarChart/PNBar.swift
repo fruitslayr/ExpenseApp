@@ -85,7 +85,6 @@ class PNBar:UIView {
             
             barRadius = 2.0 //does nothing as overriden in PNBarChart.swift
         }
-        
 
     }
     
