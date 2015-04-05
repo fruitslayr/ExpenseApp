@@ -15,7 +15,7 @@ class CollectionViewController: UICollectionViewController {
     var listOfLabels = [String]()
     var chartData: (List: [[[Expense]]], labels: [String], tags: [Tag]) = ([[[Expense]]](), [String](), [Tag]())
     var strokeColors: [UIColor] = [UIColor]()
-    
+
     var yValueMax = CGFloat()
     var yValues = [[Double]]()
     var viewType: Int = 0

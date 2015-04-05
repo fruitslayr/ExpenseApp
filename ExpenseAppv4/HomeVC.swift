@@ -200,10 +200,8 @@ class HomeVC: UIViewController, MFMailComposeViewControllerDelegate {
 
     func createBarGraph(data: (List: [[[Expense]]], labels: [String], tags: [Tag]), viewType: Int) -> CollectionViewController {
         
-        let collectionViewLayout = UICollectionViewLayout()
-        collectionViewLayout
-        
-        let currentBarChart = CollectionViewController(collectionViewLayout: this)
+        let collectionViewLayout = UICollectionViewLayout()        
+        let currentBarChart = CollectionViewController(collectionViewLayout: collectionViewLayout)
         
         currentBarChart.viewType = viewType
         
